@@ -6,3 +6,10 @@ body {
     padding-top: 36px;
     padding-bottom: 36px;
 }
+
+
+div.enumerate {
+    color: blue;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
