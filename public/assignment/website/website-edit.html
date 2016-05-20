@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
+    <meta charset="UTF-8">
+    <title>Edit Website</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/assignment/css/style.css" rel="stylesheet"/>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="website-list.html" class="navbar-link">
+                  <span class="glyphicon glyphicon-chevron-left">
+                  </span>
+                </a>
+            </p>
+            <a class="navbar-brand" href="#">
+                Edit Website
+            </a>
+            <p class="navbar-text pull-right">
+                <a href="website-list.html" class="navbar-link">
+          <span class="glyphicon glyphicon-ok">
+          </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <form>
+        <div class="form-group">
+            <label for="website-name">Website Name</label>
+            <input type="text"
+                   class="form-control"
+                   id="website-name"
+                   value="Amazon"
+                   placeholder="AirBnB">
+        </div>
+        <div class="form-group">
+            <label for="website-description">Website Description</label>
+                <textarea rows="5"
+                          id="website-description"
+                          class="form-control"
+                          placeholder="Description">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy</textarea>
+        </div>
+    </form>
+
+    <a class="btn btn-danger  btn-block"
+       href="website-list.html">Delete</a>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <p class="navbar-text pull-right">
+            <a href="/assignment/user/profile.html">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
+    </div>
+</nav>
+
+</body>
+</html>
