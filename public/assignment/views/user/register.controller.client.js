@@ -34,7 +34,7 @@
                     user.password = password1;
 
                     created = UserService.createUser(user);
-                    console.log(created)
+                    console.log(created);
 
                     if(created) {
                         $location.url("/profile/" + user._id);
