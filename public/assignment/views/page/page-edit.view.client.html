@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="page-list.view.client.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/" class="navbar-link">
                   <span class="glyphicon glyphicon-chevron-left">
                   </span>
                 </a>
@@ -12,7 +12,7 @@
                 Edit Page
             </a>
             <p class="navbar-text pull-right">
-                <a href="page-list.view.client.html" class="navbar-link">
+                <a ng-click="model.updatePage(model.page_id)" class="navbar-link">
           <span class="glyphicon glyphicon-ok">
           </span>
                 </a>
@@ -26,7 +26,8 @@
     <form>
         <div class="form-group">
         <label for="name">Name</label>
-        <input type="text"
+        <input ng-model="model.page.name"
+               type="text"
                class="form-control"
                id="name"
                placeholder="Page Name"
@@ -34,7 +35,8 @@
     </div>
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text"
+            <input ng-model="model.page.description"
+                   type="text"
                    class="form-control"
                    id="title"
                    placeholder="Page Description"
@@ -42,14 +44,15 @@
         </div>
     </form>
 
-    <a class="btn btn-danger  btn-block"
+    <a ng-click="model.deletePage(model.page._id)"
+       class="btn btn-danger  btn-block"
        href="page-list.view.client.html">Delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <p class="navbar-text pull-right">
-            <a href="/assignment/user/profile.html">
+            <a href="#/profile/model.userId">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </p>
