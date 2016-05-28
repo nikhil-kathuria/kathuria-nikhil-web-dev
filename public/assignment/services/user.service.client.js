@@ -35,6 +35,7 @@
 
         function createUser(user) {
             users.push(user)
+            return user
         }
 
         function deleteUser(id) {
@@ -48,18 +49,18 @@
         }
 
         function findUserByCredentials(username, password) {
-            for(var i in users) {
-                if(users[i].username === username && users[i].password === password) {
-                    return users[i];
+            for(var idx in users) {
+                if(users[idx].username === username && users[idx].password === password) {
+                    return users[idx];
                 }
             }
             return null;
         }
 
         function findUserById(id) {
-            for(var i in users) {
-                if(users[i]._id === id) {
-                    return users[i];
+            for(var idx in users) {
+                if(users[idx]._id === id) {
+                    return users[idx];
                 }
             }
             return null;
@@ -67,11 +68,11 @@
 
         function findUserByUsername(username){
             for(var idx in users){
-                if(users[i].username === username){
-                    return true
+                if(users[idx].username === username){
+                    return users[idx];
                 }
             }
-            return false;
+            return null;
         }
 
     }
