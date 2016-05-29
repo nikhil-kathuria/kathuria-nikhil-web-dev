@@ -27,6 +27,9 @@
 
 
         function createWidget(pageId, widget){
+            widget['pageId'] = pageId;
+            widgets.push(widget);
+            return widget;
 
         }
 
@@ -51,6 +54,9 @@
         }
 
         function updateWidget(widgetId, widget){
+            widget['id'] = widgetId;
+            widgets.push(widget);
+            return widget;
 
         }
 

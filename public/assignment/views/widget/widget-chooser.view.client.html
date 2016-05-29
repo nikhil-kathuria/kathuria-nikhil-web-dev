@@ -17,9 +17,13 @@
 </nav>
 
 <div class="container">
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
     <ul class="list-group">
         <li class="list-group-item">
-            <a ng-click="model.editWidget('HEADER')" >
+            <a ng-click="model.addWidget('HEADER')" >
                 Header
             </a>
         </li>
@@ -49,12 +53,12 @@
             </a>
         </li>
         <li class="list-group-item">
-            <a ng-click="model.editWidget('IMAGE')">
+            <a ng-click="model.addWidget('IMAGE')">
                 Image
             </a>
         </li>
         <li class="list-group-item">
-            <a ng-click="mode.editWidget('YOUTUBE')">
+            <a ng-click="mode.addWidget('YOUTUBE')">
                 Youtube
             </a>
         </li>

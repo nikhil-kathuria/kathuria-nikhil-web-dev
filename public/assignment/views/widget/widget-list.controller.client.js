@@ -15,7 +15,7 @@
 
         function init() {
             vm.widgets = angular.copy(WidgetService.findWidgetsByPageId(vm.pageId));
-            console.log(vm.pageId);
+            
         }
         init();
 
