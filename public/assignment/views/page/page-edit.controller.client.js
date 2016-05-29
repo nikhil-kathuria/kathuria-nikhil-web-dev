@@ -12,30 +12,32 @@
         vm.deletePage = deletePage;
 
         function init() {
-            vm.page = PageService.findPageById(pageId);
+            vm.page = angular.copy(PageService.findPageById(vm.pageId));
         }
 
         init();
 
-        function updatePage(pageId){
-            page = {"_id" : pageId,
-                    "name" : vm.page.name,
-                    "websiteID" : vm.websiteId,
-                    "description" : vm.page.description
-            };
-            var result = PageService.updatePage(pageId, page);
+        function updatePage(){
+            if (vm.page.name){
+                //console.log(pageId);
+                var result = PageService.updatePage(vm.pageId, vm.page);
 
-            if(result) {
-                $location.route("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                if(result) {
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                } else {
+                    vm.error = "Cannot update the page";
+                }
+
             } else {
-                vm.error = "Cannot update the page";
+                vm.error = "Page name cannot be blank";
             }
         }
 
-        function deleltePage(pageId){
-            var result = PageService.deleltePage(pageId);
+
+        function deletePage(){
+            var result = PageService.deletePage(vm.pageId);
             if (result) {
-                $location.route("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
             } else {
                 vm.error = "Cannot delete the page";
             }

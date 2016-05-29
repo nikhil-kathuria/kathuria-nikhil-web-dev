@@ -7,27 +7,35 @@
         var vm = this;
         vm.userId = $routeParams.userId;
         vm.websiteId = $routeParams.websiteId;
+
         vm.deleteWebsite = deleteWebsite;
         vm.updateWebsite = updateWebsite;
 
         function init(){
-            vm.website =  WebsiteService.findWebsiteById(vm.websiteId)
+            vm.website =  angular.copy(WebsiteService.findWebsiteById(vm.websiteId));
         }
 
         init();
 
-        function updateWebsite(websiteId){
-            website = {"_id" : websiteId,
-                "name" : vm.website.name,
-                "websiteID" : vm.websiteId,
-                "description" : vm.website.description
-            };
-            var result = WebsiteService.updateWebsite(website, websiteId);
+        function updateWebsite(website) {
+            if (!(website.name)) {
+                vm.error = "New Website name cannot be blank"
 
-            if(result) {
-                $location.route("/user/"+vm.userId+"/website");
             } else {
-                vm.error = "Cannot update the page";
+                website = {
+                    "_id": vm.websiteId,
+                    "name": vm.website.name,
+                    "developerId": vm.userId,
+                    "description": vm.website.description
+                };
+                var result = WebsiteService.updateWebsite(vm.websiteId, website);
+                console.log(result);
+
+                if (result) {
+                    $location.url("/user/" + vm.userId + "/website");
+                } else {
+                    vm.error = "Cannot update the page";
+                }
             }
         }
 

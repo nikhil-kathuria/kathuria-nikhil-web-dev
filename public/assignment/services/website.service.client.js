@@ -25,15 +25,11 @@
         };
         return api;
 
-        function createWebsite(developerId, name, desc) {
-            var newWebsite = {
-                _id: (new Date()).getTime()+"",
-                name: name,
-                description: desc,
-                developerId: developerId
-            };
-            websites.push(newWebsite);
-            return newWebsite;
+        function createWebsite(userId, website) {
+            website['_id'] = (new Date()).getTime().toString();
+            website['developerId'] = userId;
+            websites.push(website);
+            return website;
         }
 
         function findWebsitesByUser(userId) {
@@ -55,11 +51,13 @@
             return null
         }
 
-        function updateWebsite(websiteID, website){
+        function updateWebsite(websiteId, website){
+            console.log(website);
             for (var i in websites){
-                if(websites[i]._id === websiteID){
+                if(websites[i]._id === websiteId){
                     websites[i] = website;
                     return true;
+
                 }
             }
             return false;

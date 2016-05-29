@@ -3,7 +3,8 @@
         .module("WebAppMaker")
         .factory("PageService", PageService);
 
-    function PageService() {
+    function PageService(){
+
         var pages = [
             { "_id": "321", "name": "Post 1", "websiteId": "456" },
             { "_id": "432", "name": "Post 2", "websiteId": "456" },
@@ -22,7 +23,8 @@
 
 
         function createPage(websiteId, page) {
-            page.websiteId = websiteId;
+            page['websiteId'] = websiteId;
+            page['_id'] = (new Date()).getTime().toString();
             pages.push(page);
             return page;
         }
@@ -38,13 +40,12 @@
         }
 
         function findPageById(pageId) {
-            var resultSet = [];
             for (var idx in  pages) {
                 if (pages[idx]._id === pageId) {
-                    resultSet.push(pages[idx]);
+                    return pages[idx];
                 }
             }
-            return resultSet;
+            return null;
 
         }
 
