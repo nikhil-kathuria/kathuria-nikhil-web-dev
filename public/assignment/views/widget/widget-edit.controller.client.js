@@ -15,6 +15,7 @@
 
         function init(){
             vm.widget = angular.copy(WidgetService.findWidgetById(vm.widgetId));
+            console.log(vm.widget);
         }
 
         init();
