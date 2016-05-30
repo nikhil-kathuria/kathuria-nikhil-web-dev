@@ -21,6 +21,7 @@
         init();
         
         function updateWidget(widget){
+            console.log(widget);
             var result = WidgetService.updateWidget(vm.widgetId, widget);
 
             if (result){

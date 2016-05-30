@@ -19,7 +19,6 @@
 
         function updatePage(){
             if (vm.page.name){
-                //console.log(pageId);
                 var result = PageService.updatePage(vm.pageId, vm.page);
 
                 if(result) {

@@ -29,7 +29,6 @@
         function createWidget(pageId, widget){
             widget['pageId'] = pageId;
             widgets.push(widget);
-            //console.log(widgets);
             return widget;
 
         }
@@ -51,7 +50,6 @@
                     return widgets[idx];
                 }
             }
-            console.log(widgets)
             return null;
         }
 
