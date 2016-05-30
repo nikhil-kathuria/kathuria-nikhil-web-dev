@@ -25,7 +25,7 @@
                 found = UserService.findUserByUsername(username);
 
                 if (found){
-                    vm.error ="User Id already exist"
+                    vm.error ="User Name already exist"
 
                 } else {
                     var user = {};
@@ -37,7 +37,7 @@
                     console.log(created);
 
                     if(created) {
-                        $location.url("/profile/" + user._id);
+                        $location.url("/user/" + user._id);
                     } else {
                         vm.error ="Unable to create user"
                     }
