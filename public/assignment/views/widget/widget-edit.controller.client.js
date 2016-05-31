@@ -21,6 +21,24 @@
         init();
         
         function updateWidget(widget){
+
+            switch (widget.widgetType){
+                case "HEADER":
+                    console.log(!widget.text);
+                    console.log(!widget.size);
+                    if((!widget.text) || (!widget.size)) {
+                        vm.error = "Text or Size cannot be blank";
+                        return;
+                    }
+                    break;
+                case "YOUTUBE":
+                case "IMAGE":
+                    if( (!widget.url) || (!widget.width)) {
+                        vm.error = "Url or Width cannot be blank";
+                        return;
+                    }
+                    break;
+            }
             console.log(widget);
             var result = WidgetService.updateWidget(vm.widgetId, widget);
 
