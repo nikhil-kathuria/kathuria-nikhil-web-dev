@@ -2,23 +2,21 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <p class="navbar-text pull-left">
-                <a href="#/user/{{model.userId}}/website/" class="navbar-link">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/website/" class="navbar-link">
                   <span class="glyphicon glyphicon-chevron-left">
                   </span>
-                </a>
-            </p>
-            <a class="navbar-brand" href="">
-                Pages
             </a>
-            <p class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new"
-                   class="navbar-link">
+        </div>
+        <a class="navbar-brand" href="">
+            Pages
+        </a>
+        <div class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new"
+               class="navbar-link">
                   <span class="glyphicon glyphicon-plus">
                   </span>
-                </a>
-            </p>
+            </a>
         </div>
     </div>
 </nav>

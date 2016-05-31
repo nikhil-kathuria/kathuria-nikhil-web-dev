@@ -2,23 +2,22 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <p class="navbar-text pull-left">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
                   <span class="glyphicon glyphicon-chevron-left">
                   </span>
-                </a>
-            </p>
-            <a class="navbar-brand" href="">
-                New Page
             </a>
-            <p class="navbar-text pull-right">
-                <a ng-click="model.createPage(name, title)" class="navbar-link">
+        </div>
+        <a class="navbar-brand" href="">
+            New Page
+        </a>
+        <div class="navbar-text pull-right">
+            <a ng-click="model.createPage(name, title)" class="navbar-link">
           <span class="glyphicon glyphicon-ok">
           </span>
-                </a>
-            </p>
+            </a>
         </div>
+    </div>
     </div>
 </nav>
 

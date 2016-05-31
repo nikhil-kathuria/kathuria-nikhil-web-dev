@@ -15,11 +15,12 @@
         init();
 
         function updateUser() {
-            var result = UserService.updateUser(vm.user._id, vm.user);
-            if(result === true) {
+            var result = UserService.updateUser(vm.userId, vm.user);
+
+            if(result) {
                 vm.success = "User successfully updated";
             } else {
-                vm.error = "User not found";
+                vm.error = "Could not update profile";
             }
         }
         
