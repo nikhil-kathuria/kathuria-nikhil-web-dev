@@ -10,22 +10,37 @@
 
         
         function init() {
-            vm.user = UserService.findUserById(vm.userId);
+            UserService
+                .findUserById(vm.userId)
+                .then(function(response){
+                    vm.user = response.data;
+            });
+
         }
         init();
 
         function updateUser() {
-            var result = UserService.updateUser(vm.userId, vm.user);
-
-            if(result) {
-                vm.success = "User successfully updated";
-            } else {
-                vm.error = "Could not update profile";
-            }
+            UserService
+                .updateUser(vm.userId, vm.user)
+                .then(
+                    function(response){
+                        vm.success = "User successfully updated";
+                    }, function(error){
+                        vm.error = "Could not update profile";
+                    }
+                );
         }
-        
-        function createUser(){
-            var result = UserService.createUser()
+
+        function unregister(){
+            UserService
+                .deleteUser(vm.userId)
+                .then(
+                    function () {
+                        $location.url("/login");
+                    }, function(){
+                        vm.error = "Unable to remove user";
+                    }
+                )
         }
     }
 })();
