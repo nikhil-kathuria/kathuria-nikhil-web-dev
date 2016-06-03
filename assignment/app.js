@@ -1,7 +1,7 @@
 module.exports = function(app) {
     require("./services/user.service.server.js")(app);
     require("./services/website.service.server.js")(app);
-    reqiore("./services/page.service.server.js")(app);
+    require("./services/page.service.server.js")(app);
 
 
     app.get("/say/:something", function (req, res){

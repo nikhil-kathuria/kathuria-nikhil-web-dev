@@ -17,7 +17,7 @@ module.exports = function(app){
         var websiteId = req.params.websiteId;
         var page = req.body;
         
-        page['id'] = new Date().getTime().toString();
+        page['_id'] = new Date().getTime().toString();
         page['websiteId'] = websiteId;
         
         if (pages.push(page)){

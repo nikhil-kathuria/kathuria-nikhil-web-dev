@@ -18,14 +18,13 @@
                     "title" : title
                 };
 
-                var result = PageService.createPage(vm.websiteId, page);
-
-                if (result){
-                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
-                } else {
-                    vm.error = "Cannot create the page";
-                }
-
+                PageService
+                    .createPage(vm.websiteId, page)
+                    .then(function (response) {
+                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                }, function(err){
+                        vm.error = err.data;
+                    });
             } else {
                 vm.error = "New page name cannot be blank";
             }

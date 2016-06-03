@@ -12,20 +12,24 @@
         vm.deletePage = deletePage;
 
         function init() {
-            vm.page = angular.copy(PageService.findPageById(vm.pageId));
+            PageService
+                .findPageById(vm.pageId)
+                .then(function (response) {
+                    vm.page = angular.copy(response.data);
+                });
         }
 
         init();
 
         function updatePage(){
             if (vm.page.name){
-                var result = PageService.updatePage(vm.pageId, vm.page);
-
-                if(result) {
-                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-                } else {
-                    vm.error = "Cannot update the page";
-                }
+                PageService
+                    .updatePage(vm.pageId, vm.page)
+                    .then(function (response) {
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                    }, function(err){
+                        vm.error = err.data;
+                    });
 
             } else {
                 vm.error = "Page name cannot be blank";
@@ -34,12 +38,14 @@
 
 
         function deletePage(){
-            var result = PageService.deletePage(vm.pageId);
-            if (result) {
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-            } else {
-                vm.error = "Cannot delete the page";
-            }
+            PageService
+                .deletePage(vm.pageId)
+                .then(function (response) {
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                }, function(err){
+                    vm.error = err.data;
+                });
+
         }
     }
 
