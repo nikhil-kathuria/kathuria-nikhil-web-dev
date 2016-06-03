@@ -12,40 +12,45 @@
         vm.updateWebsite = updateWebsite;
 
         function init(){
-            vm.website =  angular.copy(WebsiteService.findWebsiteById(vm.websiteId));
+            WebsiteService
+                .findWebsiteById(vm.websiteId)
+                .then(function (response){
+                    vm.website = response.data;
+            });
         }
 
         init();
 
         function updateWebsite(website) {
-            if (!(website.name)) {
-                vm.error = "New Website name cannot be blank"
-
-            } else {
-                website = {
+            if (website.name) {
+                var website = {
                     "_id": vm.websiteId,
                     "name": vm.website.name,
                     "developerId": vm.userId,
                     "description": vm.website.description
                 };
-                var result = WebsiteService.updateWebsite(vm.websiteId, website);
-                console.log(result);
+                
+                WebsiteService
+                    .updateWebsite(vm.websiteId, website)
+                    .then(function (response) {
+                            $location.url("/user/" + vm.userId + "/website");
+                    }, function(err){
+                        vm.error=err.data;
+                    });
 
-                if (result) {
-                    $location.url("/user/" + vm.userId + "/website");
-                } else {
-                    vm.error = "Cannot update the page";
-                }
+            } else {
+                vm.error = "New Website name cannot be blank";
             }
         }
 
         function deleteWebsite(websiteId) {
-            var result = WebsiteService.deleteWebsite(websiteId);
-            if(result) {
-                $location.url("/user/"+vm.userId+"/website");
-            } else {
-                vm.error = "Unable to delete website";
-            }
+            WebsiteService
+                .deleteWebsite(websiteId)
+                .then(function (response) {
+                    $location.url("/user/"+vm.userId+"/website");
+                }, function(err){
+                    vm.error = "Unable to delete website";
+                });
         }
     }
 })();

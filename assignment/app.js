@@ -1,5 +1,6 @@
 module.exports = function(app) {
-    var userService = require("./services/user.service.server.js")(app);
+    require("./services/user.service.server.js")(app);
+    require("./services/website.service.server.js")(app);
 
 
     app.get("/say/:something", function (req, res){

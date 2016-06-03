@@ -29,12 +29,13 @@ module.exports = function(app) {
 
 
     }
+
     function findAllWebsitesForUser(req, res){
         var userId = req.params.userId;
         var result = [];
-        for(var w in websites) {
-            if(websites[w].developerId === userId) {
-                result.push(websites[w]);
+        for(var idx in websites) {
+            if(websites[idx].developerId === userId) {
+                result.push(websites[idx]);
             }
         }
         res.json(result);
@@ -43,7 +44,7 @@ module.exports = function(app) {
         var websiteId = req.params.websiteId;
         for (var idx in websites){
             if (websites[idx]._id  === websiteId){
-                res.json(websitesp[idx]);
+                res.json(websites[idx]);
                 return;
             }
         }
@@ -55,11 +56,11 @@ module.exports = function(app) {
         var website = req.body;
         for (var idx in websites){
             if (websites[idx]._id === websiteId){
-                websitesp[idx] = website;
+                websites[idx] = website;
                 res.sendStatus(200);
             }
         }
-        res.sendStatus(400);
+        res.status(400).send("Cannot update Website");
     }
 
     function deleteWebsite(req, res){
@@ -70,7 +71,7 @@ module.exports = function(app) {
                 res.sendStatus(200);
             }
         }
-        res.sendStatus(400);
+        res.status(400).send("Cannot Update Website");
     }
 
 };

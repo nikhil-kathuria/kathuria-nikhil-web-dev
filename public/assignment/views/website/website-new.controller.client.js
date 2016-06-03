@@ -10,20 +10,22 @@
         vm.createWebsite = createWebsite;
 
         function createWebsite(name, description) {
-            if (!(name)) {
-                vm.error = "New website name cannot be blank"
-                
-            } else {
+            if (name) {
                 var mywebsite = {
                     name: name,
-                    description: description,
+                    description: description
                 };
-                var newWebsite = WebsiteService.createWebsite(vm.userId, mywebsite);
-                if (newWebsite) {
-                    $location.url("/user/" + vm.userId + "/website");
-                } else {
-                    vm.error = "Unable to create website";
-                }
+
+                WebsiteService
+                    .createWebsite(vm.userId, mywebsite)
+                    .then(function (response) {
+                        $location.url("/user/" + vm.userId + "/website");
+                }, function(err){
+                        vm.error = err.data;
+                    });
+
+            } else {
+                vm.error = "New website name cannot be blank";
             }
         }
     }
