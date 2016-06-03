@@ -15,6 +15,7 @@ module.exports = function(app) {
     app.put("/api/website/:websiteId", updateWebsite);
     app.delete("/api/website/:websiteId", deleteWebsite);
 
+    
     function createWebsite(req, res){
         var userId = req.params.userId;
         var website = req.body;
@@ -58,6 +59,7 @@ module.exports = function(app) {
             if (websites[idx]._id === websiteId){
                 websites[idx] = website;
                 res.sendStatus(200);
+                return;
             }
         }
         res.status(400).send("Cannot update Website");
@@ -67,8 +69,9 @@ module.exports = function(app) {
         var websiteId = req.params.websiteId;
         for (var idx in websites){
             if (websites[idx]._id === websiteId){
-                websites[idx] = website;
+                websites.splice(idx, 1);
                 res.sendStatus(200);
+                return;
             }
         }
         res.status(400).send("Cannot Update Website");
