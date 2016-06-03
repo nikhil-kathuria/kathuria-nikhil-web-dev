@@ -52,7 +52,7 @@ module.exports = function(app){
 
         user['_id'] = new Date().getTime().toString();
         if (users.push(user)){
-            res.status(200).send(user);
+            res.status(201).send(user);
         } else {
             res.status(500).send("Not able to create user");
         }
