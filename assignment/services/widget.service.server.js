@@ -15,7 +15,7 @@ module.exports = function(app) {
     app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
-    app.delte("/api/widget/:widgetId", deleteWidget);
+    app.delete("/api/widget/:widgetId", deleteWidget);
     
     function createWidget(req, res) {
         var pageId = req.params.pageId;
@@ -24,7 +24,7 @@ module.exports = function(app) {
         widget['pageId'] = pageId;
 
         if (widgets.push(widget)){
-            res.sendstatus(201);
+            res.sendStatus(201);
         } else {
             res.status(500).send("Not able to create widget");
         }
@@ -37,7 +37,7 @@ module.exports = function(app) {
 
         for (var idx in widgets){
             if (widgets[idx].pageId === pageId) {
-                result.push(widget);
+                result.push(widgets[idx]);
             }
         }
         res.json(result);
@@ -61,7 +61,7 @@ module.exports = function(app) {
         for (var idx in widgets){
             if (widgets[idx]._id === widgetId){
                 widgets[idx] = widget;
-                res.send(200);
+                res.sendStatus(200);
                 return;
             }
         }
@@ -74,7 +74,7 @@ module.exports = function(app) {
         for (var idx in widgets){
             if (widgets[idx]._id = widgetId){
                 widgets.splice(idx,1);
-                res.send(200);
+                res.sendStatus(200);
                 return;
             }
         }
