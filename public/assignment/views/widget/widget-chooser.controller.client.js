@@ -10,20 +10,21 @@
         vm.pageId = $routeParams.pageId;
         vm.addWidget = addWidget;
 
-        function addWidget(widgetType){
+        function addWidget(widgetType) {
             var widget = {
-                widgetType : widgetType
+                widgetType: widgetType
             };
 
             WidgetService
                 .createWidget(vm.pageId, widget)
                 .then(function (response) {
-                    $location.url("/user/"+ vm.userId +"/website/"+vm.websiteId+"/page/" + vm.pageId + "/widget/" + widget._id);
-                }, function (err){
+                    var widgetId = response.data._id;
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + widgetId);
+                }, function (err) {
                     vm.error = err.data;
                 });
-        }
 
+        }
     }
 
 })();

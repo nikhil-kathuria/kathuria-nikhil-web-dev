@@ -9,55 +9,83 @@
         vm.websiteId = $routeParams.websiteId;
         vm.pageId = $routeParams.pageId;
         vm.widgetId = $routeParams.widgetId;
-        
-        vm.updateWidget =  updateWidget;
+
         vm.deleteWidget = deleteWidget;
+        vm.updateHeading =  updateHeading;
+        vm.updateYoutube = updateYoutube;
+        vm.updateImage = updateImage;
 
         function init(){
-            vm.widget = angular.copy(WidgetService.findWidgetById(vm.widgetId));
-            console.log(vm.widget);
+            WidgetService
+                .findWidgetById(vm.widgetId)
+                .then(function (resposne) {
+                    vm.widget = resposne.data;
+                }, function(err){
+                    vm.error = err.data;
+                });
+
         }
 
         init();
-        
-        function updateWidget(widget){
 
-            switch (widget.widgetType){
-                case "HEADER":
-                    console.log(!widget.text);
-                    console.log(!widget.size);
-                    if((!widget.text) || (!widget.size)) {
-                        vm.error = "Text or Size cannot be blank";
-                        return;
-                    }
-                    break;
-                case "YOUTUBE":
-                case "IMAGE":
-                    if( (!widget.url) || (!widget.width)) {
-                        vm.error = "Url or Width cannot be blank";
-                        return;
-                    }
-                    break;
-            }
-            console.log(widget);
-            var result = WidgetService.updateWidget(vm.widgetId, widget);
+        function updateHeading(widget) {
+            if (widget.text && widget.size) {
+                WidgetService
+                    .updateWidget(vm.widgetId, widget)
+                    .then(function (response) {
+                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                    }, function (err) {
+                        vm.error = err.data;
+                    });
 
-            if (result){
-                $location.url("/user/"+ vm.userId +"/website/"+ vm.websiteId +"/page/"+ vm.pageId +"/widget");
             } else {
-                vm.error = "Failed to update the widget"
+                vm.error = "Text or Size cannot be blank";
+            }
+        }
+
+
+        function updateYoutube(widget){
+
+            if( widget.url && widget.width) {
+                WidgetService
+                    .updateWidget(vm.widgetId, widget)
+                    .then(function (response) {
+                        $location.url("/user/"+ vm.userId +"/website/"+ vm.websiteId +"/page/"+ vm.pageId +"/widget");
+                    }, function (err) {
+                        vm.error = err.data;
+                    });
+
+            } else {
+                vm.error = "Url or Width cannot be blank";
+            }
+
+        }
+
+        function updateImage(widget){
+
+            if( widget.url && widget.width) {
+                WidgetService
+                    .updateWidget(vm.widgetId, widget)
+                    .then(function (response) {
+                        $location.url("/user/"+ vm.userId +"/website/"+ vm.websiteId +"/page/"+ vm.pageId +"/widget");
+                    }, function (err) {
+                        vm.error = err.data;
+                    });
+            } else {
+                vm.error = "Url or Width cannot be blank";
             }
         }
         
         function deleteWidget() {
-            var result = WidgetService.deleteWidget(vm.widgetId);
+            WidgetService
+                .deleteWidget(vm.widgetId)
+                .then(function (response) {
+                    $location.url("/user/"+ vm.userId +"/website/"+ vm.websiteId +"/page/"+ vm.pageId +"/widget");
+                }, function (err){
+                    vm.error = err.data;
+                });
 
-            if (result) {
-                $location.url("/user/"+ vm.userId +"/website/"+ vm.websiteId +"/page/"+ vm.pageId +"/widget");
 
-            } else {
-                vm.error = "Failed to delete the widget";
-            }
         }
     }
 

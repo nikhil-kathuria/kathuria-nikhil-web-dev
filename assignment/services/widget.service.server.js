@@ -55,7 +55,7 @@ module.exports = function(app) {
     }
     
     function updateWidget(req, res){
-        var widgetId = req.params.pageId;
+        var widgetId = req.params.widgetId;
         var widget = req.body;
 
         for (var idx in widgets){
@@ -65,11 +65,11 @@ module.exports = function(app) {
                 return;
             }
         }
-        res.status(400).send("Not able to create widget");
+        res.status(400).send("Not able to update widget");
     }
     
     function deleteWidget(req, res) {
-        var widgetId = req.params.pageId;
+        var widgetId = req.params.widgetId;
 
         for (var idx in widgets){
             if (widgets[idx]._id = widgetId){
