@@ -3,6 +3,10 @@ a:hover{
     text-decoration: none;
 }
 
+div.input-group.search{
+    margin-bottom: 10px;
+}
+
 input.form-control {
     margin-bottom: 5px;
 }

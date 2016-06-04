@@ -29,7 +29,7 @@
         }
 
         function updateWidget(widgetId, widget){
-            return $http.put("/api/widget/" + widgetId);
+            return $http.put("/api/widget/" + widgetId, widget);
 
         }
 
