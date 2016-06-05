@@ -23,7 +23,7 @@ module.exports = function(app){
                 return;
             }
         }
-        res.send(400);
+        res.status(400).send("Not able to delete user");
     }
 
     function updateUser(req, res) {

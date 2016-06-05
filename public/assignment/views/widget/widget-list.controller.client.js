@@ -18,6 +18,8 @@
                 .findWidgetsByPageId(vm.pageId)
                 .then(function (response) {
                 vm.widgets = angular.copy(response.data);
+                    $(".container")
+                        .sortable({axis : "y"});
             });
             
         }
