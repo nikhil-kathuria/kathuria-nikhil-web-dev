@@ -11,20 +11,59 @@ module.exports = function(app) {
         { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
     ];
 
+    var multer = require('multer');
+    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+
+
     app.post("/api/page/:pageId/widget", createWidget);
     app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
-    
-    function createWidget(req, res) {
+    app.post ("/api/upload", upload.single('myFile'), uploadImage);
+
+
+
+    function uploadImage(req, res) {
+        if(req.file) {
+
+            var widgetId = req.body.widgetId;
+            var pageId = req.body.widgetId;
+            var userId = req.body.userId;
+            var websiteId = req.body.userId;
+
+            var width = req.body.width;
+            var myFile = req.file;
+
+            var originalname = myFile.originalname; // file name on user's computer
+            var filename = myFile.filename;     // new file name in upload folder
+            var path = myFile.path;         // full path of uploaded file
+            var destination = myFile.destination;  // folder where file is saved to
+            var size = myFile.size;
+            var mimetype = myFile.mimetype;
+
+            for (var idx in widgets) {
+                if (widgets[idx]._id === widgetId) {
+                    widgets[idx].url = "/uploads/" + filename;
+                    widgets[idx].width = width;
+                }
+            }
+            res.redirect("/assignment/#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/" + widgetId);
+
+        } else {
+            res.redirect("/assignment/#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/" + widgetId);
+        }
+    }
+
+
+function createWidget(req, res) {
         var pageId = req.params.pageId;
         var widget = req.body;
         widget['_id'] = new Date().getTime().toString();
         widget['pageId'] = pageId;
 
         if (widgets.push(widget)){
-            res.sendStatus(201);
+            res.send(widget);
         } else {
             res.status(500).send("Not able to create widget");
         }
