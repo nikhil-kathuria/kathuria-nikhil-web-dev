@@ -25,15 +25,15 @@ module.exports = function(app) {
 
 
     function uploadImage(req, res) {
-        if(req.file) {
-
             var widgetId = req.body.widgetId;
-            var pageId = req.body.widgetId;
+            var pageId = req.body.pageId;
             var userId = req.body.userId;
             var websiteId = req.body.userId;
 
             var width = req.body.width;
             var myFile = req.file;
+
+            if(myFile) {
 
             var originalname = myFile.originalname; // file name on user's computer
             var filename = myFile.filename;     // new file name in upload folder
@@ -41,6 +41,8 @@ module.exports = function(app) {
             var destination = myFile.destination;  // folder where file is saved to
             var size = myFile.size;
             var mimetype = myFile.mimetype;
+
+
 
             for (var idx in widgets) {
                 if (widgets[idx]._id === widgetId) {
@@ -111,7 +113,7 @@ function createWidget(req, res) {
         var widgetId = req.params.widgetId;
 
         for (var idx in widgets){
-            if (widgets[idx]._id = widgetId){
+            if (widgets[idx]._id === widgetId){
                 widgets.splice(idx,1);
                 res.sendStatus(200);
                 return;
