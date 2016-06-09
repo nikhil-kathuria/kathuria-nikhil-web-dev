@@ -28,7 +28,6 @@ module.exports = function(app, models){
             .updateUser(id, newUser)
             .then(
                 function(stats){
-                    console.log(stats);
                     res.send(200);
                 },
                 function(err){
