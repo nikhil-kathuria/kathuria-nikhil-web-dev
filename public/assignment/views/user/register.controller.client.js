@@ -20,6 +20,7 @@
                                 .createUser(username, password1)
                                 .then(function(response){
                                     var user = response.data;
+                                    console.log(user);
                                     if (user._id) {
                                         $location.url("/user/" + user._id);
                                     }
