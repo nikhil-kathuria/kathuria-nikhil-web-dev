@@ -27,8 +27,8 @@ module.exports = function(app, models) {
         var userId = req.params.userId;
         websiteModel
             .findAllWebsitesForUser(userId)
-            .then(function (website){
-                res.json(website);
+            .then(function (websites){
+                res.json(websites);
         }, function (err) {
                 res.status(404).send("No website found");
             })

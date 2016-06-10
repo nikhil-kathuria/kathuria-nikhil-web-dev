@@ -80,13 +80,15 @@ module.exports = function(app, models){
             .findUserByCredentials(username, password)
             .then(
                 function (user) {
-                    if (user._id) {
+                    if (user) {
                         res.json(user);
-                    } else {
+                    } else{
                         res.status(404).send("User or password did not match");
                     }
+                }, function (err) {
+                    res.status(501).send(err);
                 }
-            )
+            );
     }
 
     function findUserByUsername(username, res){
@@ -99,7 +101,7 @@ module.exports = function(app, models){
             function(err) {
                 res.status(404).send(err);
             }
-        )
+        );
     } 
 
     function findUserById(req, res) {
@@ -112,7 +114,7 @@ module.exports = function(app, models){
             function (err) {
                 res.status(404).send(err);
             }
-        )
+        );
     }
 
 };
