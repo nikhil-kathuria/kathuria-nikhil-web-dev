@@ -31,7 +31,7 @@
 
             widget = {
                 _id : vm.widgetId,
-                widgetType : "IMAGE",
+                type : "IMAGE",
                 pageId : vm.pageId,
                 width : "100%",
                 url : url

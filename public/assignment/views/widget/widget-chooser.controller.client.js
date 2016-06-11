@@ -12,7 +12,7 @@
 
         function addWidget(widgetType) {
             var widget = {
-                widgetType: widgetType
+                type: widgetType
             };
 
             WidgetService

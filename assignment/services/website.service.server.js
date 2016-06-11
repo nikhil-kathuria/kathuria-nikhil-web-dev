@@ -39,7 +39,7 @@ module.exports = function(app, models) {
         websiteModel
             .findWebsiteById(websiteId)
             .then(function (website) {
-            return res.json(website)
+             res.json(website)
         }, function(err){
                 res.status(404).send(err);
             });

@@ -30,6 +30,8 @@
 
         function updateHeading(widget) {
             if (widget.text && widget.size) {
+                widget['size'] = parseInt(widget['size']);
+
                 WidgetService
                     .updateWidget(vm.widgetId, widget)
                     .then(function (response) {
