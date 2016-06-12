@@ -12,20 +12,37 @@
 
         vm.getSafeHtml = getSafeHtml;
         vm.getSafeUrl = getSafeUrl;
+        vm.reorderWidget = reorderWidget;
 
         function init() {
             WidgetService
                 .findWidgetsByPageId(vm.pageId)
                 .then(function (response) {
                 vm.widgets = angular.copy(response.data);
-                    $(".container")
-                        .sortable({axis : "y"});
+                    //$(".container")
+                        //.sortable({axis : "y"});
             });
             
         }
         init();
 
-        function getSafeHtml(widget) {
+        function reorderWidget(start, end) {
+            console.log(start);
+            console.log(end);
+            WidgetService
+                .reorderWidget(vm.pageId, start, end)
+                .then(
+                    function (response) {
+                    },
+                    function (err) {
+                        vm.error = err;
+                    }
+                );
+        }
+    
+
+
+    function getSafeHtml(widget) {
             return $sce.trustAsHtml(widget.text);
         }
 

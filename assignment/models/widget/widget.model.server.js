@@ -9,13 +9,63 @@ module.exports = function() {
         findAllWidgetsForPage: findAllWidgetsForPage,
         findWidgetById: findWidgetById,
         updateWidget: updateWidget,
-        deleteWidget: deleteWidget
+        deleteWidget: deleteWidget,
+        reorderWidget: reorderWidget
     };
 
     return api;
 
+    function reorderWidget(pageId, start, end){
+        return Widget.find()
+            .then(
+                function(widgets) {
+                    widgets
+                        .forEach(
+                            function(widget){
+                                if(start < end) {
+                                    if(widget.priority < start) {
+
+                                    } else if(widget.priority === start) {
+                                        widget.priority = end;
+                                        widget.save(function(err,doc){});
+                                    } else if(widget.priority > start && widget.priority <= end) {
+                                        widget.priority--;
+                                        widget.save(function(err,doc){});
+                                    } else if(widget.priority > end) {
+
+                                    }
+                                } else {
+                                    if(widget.priority < end) {
+
+                                    } else if(widget.priority === start) {
+                                        widget.priority = end;
+                                        widget.save(function(err,doc){});
+                                    } else if(widget.priority < start && widget.priority >= end) {
+                                        widget.priority++;
+                                        widget.save(function(err,doc){});
+                                    } else if(widget.priority > start) {
+
+                                    }
+                                }
+                            }
+                        );
+                },
+                function(err) {
+
+                }
+            );
+    }
+
     function createWidget(widget) {
-        return Widget.create(widget);
+        pageId = widget['_page'];
+        return Widget
+            .find({_page: pageId})
+                .then(function (allwidgets) {
+                    widget['priority'] = allwidgets.length;
+                    return Widget.create(widget);
+                }, function (err) {
+                    return null;
+                });
     }
 
     function findAllWidgetsForPage(pageId){

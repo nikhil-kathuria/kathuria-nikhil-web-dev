@@ -11,6 +11,27 @@ module.exports = function(app, models) {
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
+    app.put("/page/:pageId/widget", reorderWidget);
+
+
+    function reorderWidget(req, res){
+        var pageId = req.params.pageId;
+        var start = parseInt(req.query.start);
+        var end = parseInt(req.query.end);
+
+
+        if(!isNaN(start) && !isNaN(end)){
+            widgetModel
+                .reorderWidget(pageId, start, end)
+                .then(function (response) {
+                        res.json(200);
+                    }, function (err) {
+                        res.status(400).send(err);
+                    }
+                );
+        }
+
+    }
 
 
 

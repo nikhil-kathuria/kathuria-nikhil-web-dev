@@ -9,10 +9,15 @@
             createWidget : createWidget,
             findWidgetById : findWidgetById,
             updateWidget : updateWidget,
-            deleteWidget : deleteWidget
+            deleteWidget : deleteWidget,
+            reorderWidget: reorderWidget
         };
         return api;
 
+
+        function reorderWidget(pageId, startIndex, endIndex) {
+            return $http.put("/page/"+pageId+"/widget?start="+startIndex+"&end="+endIndex);
+        }
 
         function createWidget(pageId, widget){
             return $http.post("/api/page/" + pageId + "/widget", widget);

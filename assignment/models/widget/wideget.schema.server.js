@@ -13,6 +13,7 @@ module.exports = function() {
         height: {type: String},
         rows: {type: Number},
         size: {type: Number},
+        priority: {type: Number},
         class: {type: String},
         icon: {type: String},
         deletable: {type: Boolean},
