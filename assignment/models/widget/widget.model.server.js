@@ -16,48 +16,42 @@ module.exports = function() {
     return api;
 
     function reorderWidget(pageId, start, end){
-        return Widget.find()
+        return Widget.find({"_page" : pageId})
             .then(
                 function(widgets) {
                     widgets
                         .forEach(
                             function(widget){
                                 if(start < end) {
-                                    if(widget.priority < start) {
+                                    if (widget.priority > start && widget.priority <= end){
+                                        widget.priority--;
+                                        widget.save(function(){});
 
                                     } else if(widget.priority === start) {
                                         widget.priority = end;
-                                        widget.save(function(err,doc){});
-                                    } else if(widget.priority > start && widget.priority <= end) {
-                                        widget.priority--;
-                                        widget.save(function(err,doc){});
-                                    } else if(widget.priority > end) {
-
+                                        widget.save(function(){});
                                     }
                                 } else {
-                                    if(widget.priority < end) {
-
-                                    } else if(widget.priority === start) {
-                                        widget.priority = end;
-                                        widget.save(function(err,doc){});
-                                    } else if(widget.priority < start && widget.priority >= end) {
+                                    if (widget.priority < start && widget.priority >= end) {
                                         widget.priority++;
-                                        widget.save(function(err,doc){});
-                                    } else if(widget.priority > start) {
+                                        widget.save(function(){});
 
+                                    } else if (widget.priority === start ){
+                                        widget.priority = end;
+                                        widget.save(function(){});
                                     }
                                 }
                             }
                         );
                 },
                 function(err) {
-
+                    res.send(404);
                 }
             );
     }
 
     function createWidget(widget) {
-        pageId = widget['_page'];
+        var pageId = widget['_page'];
         return Widget
             .find({_page: pageId})
                 .then(function (allwidgets) {

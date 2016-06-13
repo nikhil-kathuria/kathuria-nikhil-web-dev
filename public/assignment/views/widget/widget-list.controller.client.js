@@ -19,8 +19,6 @@
                 .findWidgetsByPageId(vm.pageId)
                 .then(function (response) {
                 vm.widgets = angular.copy(response.data);
-                    //$(".container")
-                        //.sortable({axis : "y"});
             });
             
         }
@@ -33,6 +31,7 @@
                 .reorderWidget(vm.pageId, start, end)
                 .then(
                     function (response) {
+                        init();
                     },
                     function (err) {
                         vm.error = err;

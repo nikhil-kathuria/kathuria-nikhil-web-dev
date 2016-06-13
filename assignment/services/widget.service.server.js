@@ -14,23 +14,26 @@ module.exports = function(app, models) {
     app.put("/page/:pageId/widget", reorderWidget);
 
 
-    function reorderWidget(req, res){
+    function reorderWidget(req, res) {
         var pageId = req.params.pageId;
         var start = parseInt(req.query.start);
         var end = parseInt(req.query.end);
 
 
-        if(!isNaN(start) && !isNaN(end)){
-            widgetModel
-                .reorderWidget(pageId, start, end)
-                .then(function (response) {
-                        res.json(200);
-                    }, function (err) {
-                        res.status(400).send(err);
-                    }
-                );
+        if (!isNaN(start) && !isNaN(end)) {
+            if (start !== end) {
+                widgetModel
+                    .reorderWidget(pageId, start, end)
+                    .then(function (response) {
+                            res.send(200);
+                        }, function (err) {
+                            res.status(400).send(err);
+                        }
+                    );
+            } else {
+                res.send(200);
+            }
         }
-
     }
 
 

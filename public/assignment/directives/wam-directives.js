@@ -14,14 +14,12 @@
                 },
                 stop: function (event, ui) {
                     end = ui.item.index();
-                    if(start >= end) {
-                        start--;
-                    }
                     scope.wamSortableCallback({
                         start: start,
                         end: end
                     });
                 },
+
                 axis : "y"
             });
         }
