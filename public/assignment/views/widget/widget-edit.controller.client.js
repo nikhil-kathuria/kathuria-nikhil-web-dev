@@ -14,6 +14,8 @@
         vm.updateHeading =  updateHeading;
         vm.updateYoutube = updateYoutube;
         vm.updateImage = updateImage;
+        vm.updateHTML = updateHTML;
+        vm.updateTextInput =updateTextInput;
 
         function init(){
             WidgetService
@@ -28,8 +30,47 @@
 
         init();
 
+        function updateTextInput(widget) {
+            if (widget.text && widget.placeholder) {
+                if (isNaN(widget.rows) || parseInt(widget.rows) < 1) {
+                    widget.rows = 1;
+                } else {
+                    widget.rows = parseInt(widget.rows);
+                }
+
+                WidgetService
+                    .updateWidget(vm.widgetId, widget)
+                    .then(function (response) {
+                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                    }, function (err) {
+                        vm.error = err.data;
+                    });
+
+            } else {
+                vm.error = "Text or Placeholder cannot be blank";
+            }
+        }
+
+
+        function updateHTML(widget){
+            if (widget.name && widget.text) {
+
+                WidgetService
+                    .updateWidget(vm.widgetId, widget)
+                    .then(function (response) {
+                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                    }, function (err) {
+                        vm.error = err.data;
+                    });
+
+            } else {
+                vm.error = "Name or Text cannot be blank";
+            }
+
+        }
+
         function updateHeading(widget) {
-            if (widget.text && widget.size) {
+            if (widget.text && widget.size && widget.name) {
                 widget['size'] = parseInt(widget['size']);
 
                 WidgetService
@@ -41,14 +82,14 @@
                     });
 
             } else {
-                vm.error = "Text or Size cannot be blank";
+                vm.error = "Name or Text or Size cannot be blank";
             }
         }
 
 
         function updateYoutube(widget){
 
-            if( widget.url && widget.width) {
+            if( widget.url && widget.width && widget.name) {
                 WidgetService
                     .updateWidget(vm.widgetId, widget)
                     .then(function (response) {
@@ -58,14 +99,14 @@
                     });
 
             } else {
-                vm.error = "Url or Width cannot be blank";
+                vm.error = "Name or Url or Width cannot be blank";
             }
 
         }
 
         function updateImage(widget){
 
-            if( widget.url && widget.width) {
+            if( widget.url && widget.width && widget.name) {
                 WidgetService
                     .updateWidget(vm.widgetId, widget)
                     .then(function (response) {
@@ -74,7 +115,7 @@
                         vm.error = err.data;
                     });
             } else {
-                vm.error = "Url or Width cannot be blank";
+                vm.error = "Name or Url or Width cannot be blank";
             }
         }
         

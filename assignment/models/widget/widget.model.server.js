@@ -86,7 +86,7 @@ module.exports = function() {
     }
 
     function deleteWidget(widgetId) {
-        return Widget.remover({_id: widgetId});
+        return Widget.remove({_id: widgetId});
     }
 
 };
