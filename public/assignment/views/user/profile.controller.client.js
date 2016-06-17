@@ -7,6 +7,7 @@
         var vm = this;
         vm.updateUser = updateUser;
         vm.unregister = unregister;
+        vm.logout = logout;
         vm.userId = $routeParams.userId;
 
         
@@ -19,6 +20,10 @@
 
         }
         init();
+        
+        function logout() {
+            
+        }
 
         function updateUser() {
             UserService
