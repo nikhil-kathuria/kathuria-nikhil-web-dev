@@ -10,10 +10,12 @@
     var searchurl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=LAT,LNG&radius=500&type=restaurant&name=cruise&key=API_KEY";
     var photourl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=";
     var keyval = "&key=" + key;
+    var maxwidth = 400;
+    var maxheight = 600;
+    var places = [];
 
 
-
-    function GooglePlaceService($http) {
+    function GooglePlaceService($http, $q) {
 
         api = {
             getPlaces: getPlaces
@@ -27,12 +29,11 @@
             // Try HTML5 geolocation.
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
-                    console.log(position);
                     pos = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
-
+                    //console.log(pos);
                 }, function () {
                     return false;
                 });
@@ -44,6 +45,8 @@
 
 
         function getPlaces() {
+
+            //var deferred = $q.defer();
             getLatLng();
             // google.maps.event.addDomListener(window, 'load', getPlaces);
 
@@ -58,8 +61,8 @@
                 query: 'restaurant'
             };
 
-            service = new google.maps.places.PlacesService(map);
-            service.nearbySearch(request, embedPhotos);
+            var service = new google.maps.places.PlacesService(map);
+            return service.nearbySearch(request, embedPhotos);
 
         }
 
@@ -67,23 +70,25 @@
 
 
         function embedPhotos(results, status){
-            console.log(results);
 
             for(var idx in results){
+                if (idx == 1 ) {
+                    return results;
+                }
 
-                refid = results[idx]['reference'];
+                if (results[idx]['photos']) {
+                    photoobj = results[idx]['photos'][0];
+                    results[idx]['icon'] = photoobj.getUrl({'maxWidth': maxwidth, 'maxHeight': maxheight});
+                }
 
-                url = photourl + refid + keyval;
-                $http.get(url).then(function (response) {
-                    console.log(response);
-                    results[idx]['icon'] = response;
-                });
-
-
+                // /*url = photourl + refid + keyval;
+                // $http.get(url).then(function (response) {
+                //     console.log(response);
+                //     results[idx]['icon'] = response;
+                // */});
             }
-            return results;
+             return results;
         }
-
 
     }
 

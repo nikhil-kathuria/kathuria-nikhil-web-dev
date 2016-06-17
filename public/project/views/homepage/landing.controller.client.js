@@ -6,10 +6,16 @@
     function LandingController($location, GooglePlaceService) {
 
         var vm = this;
+        vm.currentPlaces = currentPlaces;
         vm.places = [];
         
         function currentPlaces(){
-            vm.palces = GooglePlaceService.getPlaces();
+            GooglePlaceService
+                .getPlaces()
+                .then(function (response) {
+                    vm.places = response;
+                    console.log(vm.places);
+                });
         }
 
         currentPlaces();
