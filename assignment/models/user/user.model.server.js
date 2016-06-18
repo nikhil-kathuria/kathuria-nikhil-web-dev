@@ -11,9 +11,11 @@ module.exports = function() {
         findUserByCredentials: findUserByCredentials,
         findUserByUsername: findUserByUsername,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        findUserByFacebookId: findUserByFacebookId
     };
     return api;
+
 
     function updateUser(userId, user) {
         delete user._id;
@@ -44,5 +46,9 @@ module.exports = function() {
 
     function createUser(user) {
         return User.create(user);
+    }
+
+    function findUserByFacebookId(facebookId) {
+        return User.findOne({'facebook.id': facebookId});
     }
 };

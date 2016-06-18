@@ -32,7 +32,7 @@ module.exports = function(app, models){
         callbackURL  : process.env.FACEBOOK_CALLBACK_URL
     };
 
-    //passport.use('facebook', new FacebookStrategy(facebookConfig, facebookLogin));
+    passport.use('facebook', new FacebookStrategy(facebookConfig, facebookLogin));
 
     function serializeUser(user, done) {
         done(null, user);
@@ -51,6 +51,34 @@ module.exports = function(app, models){
             );
     }
 
+    function facebookLogin(token, refreshToken, profile, done) {
+        console.log(profile);
+        userModel
+            .findUserByFacebookId(profile.id)
+            .then(
+                function(facebookUser) {
+                    if(facebookUser) {
+                        return done(null, facebookUser);
+                    } else {
+                        facebookUser = {
+                            username: profile.displayName.replace(/ /g,''),
+                            facebook: {
+                                token: token,
+                                id: profile.id,
+                                displayName: profile.displayName
+                            }
+                        };
+                        userModel
+                            .createUser(facebookUser)
+                            .then(
+                                function(user) {
+                                    done(null, user);
+                                }
+                            );
+                    }
+                }
+            );
+    }
 
     function localStrategy(username, password, done) {
         userModel
@@ -87,15 +115,7 @@ module.exports = function(app, models){
         res.send(200);
     }
 
-    function facebookLogin(token, refreshToken, profile, done) {
-        res.send(200);
-        userModely
-            .findFacebook(profile.id)
-            .then(function (facebookuser) {
-            return done(null, facebookuser);
-            
-        });
-    }
+
     
     function register(req, res){
         var username = req.body.username;

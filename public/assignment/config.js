@@ -19,7 +19,7 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
-            .when("/user/:userId", {
+            .when("/user", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model",
@@ -89,11 +89,11 @@
                         var user = response.data;
                         if (user){
                             console.log(user);
-                            //$rootScope.currentUser = user;
+                            $rootScope.currentUser = user;
                             deferred.resolve();
                         } else {
                             console.log(user);
-                            //$rootScope.currentUser = null;
+                            $rootScope.currentUser = null;
                             deferred.reject();
                             $location.url("/login");
                         }
