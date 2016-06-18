@@ -17,7 +17,7 @@
                     if (password1 === password2) {
 
                         UserService
-                                .createUser(username, password1)
+                                .registerUser(username, password1)
                                 .then(function(response){
                                     var user = response.data;
                                     console.log(user);

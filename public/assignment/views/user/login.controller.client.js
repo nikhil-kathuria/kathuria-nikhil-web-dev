@@ -11,14 +11,13 @@
         function login(username, password) {
             if (username && password) {
                 UserService
-                    .findUserByCredentials(username, password)
+                    .login(username, password)
                     .then(function (response) {
                         var user = response.data;
                         if (user._id) {
                             $location.url("/user/" + user._id);
                         }
                     }, function(err){
-                        console.log(err);
                         vm.error = "username or password did not match";
                     });
             } else {

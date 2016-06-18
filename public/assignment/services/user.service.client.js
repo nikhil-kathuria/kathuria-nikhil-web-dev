@@ -6,10 +6,11 @@
     function UserService($http) {
 
         var api = {
+            registerUser: registerUser,
             createUser: createUser,
             login:login,
             logout:logout,
-            loggedIn: loggeIn,
+            loggedIn: loggedIn,
             findUserByCredentials: findUserByCredentials,
             findUserById: findUserById,
             updateUser: updateUser,
@@ -17,9 +18,24 @@
             findUserByUsername : findUserByUsername
         };
         return api;
-        
-        function loggedIn() {
-            
+
+        function logout(){
+            return $http.post("/api/logout");
+        }
+
+        function loggedIn(){
+            return $http.get("/api/loggedIn");
+        }
+
+
+        function login(username, password){
+            var user = {
+                username: username,
+                password: password
+            };
+            console.log(user);
+            return $http.post("/api/login",user);
+
         }
 
         function registerUser(username, password) {
@@ -27,7 +43,7 @@
             user['username'] = username;
             user['password'] = password;
 
-            return $http.post("/api/user", user);
+            return $http.post("/api/register", user);
         }
 
         function createUser(username, password) {

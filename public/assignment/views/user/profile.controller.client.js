@@ -20,11 +20,19 @@
 
         }
         init();
-        
-        function logout() {
-            
-        }
 
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function(response){
+                        $location.url("/login");
+                    },
+                    function() {
+                        $location.url("/login");
+                    }
+                )
+        }
         function updateUser() {
             UserService
                 .updateUser(vm.userId, vm.user)

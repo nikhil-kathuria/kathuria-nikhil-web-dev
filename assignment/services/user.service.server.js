@@ -1,6 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var bcrypt = require("bcrypt-nodejs");
 
 module.exports = function(app, models){
     
@@ -16,16 +17,22 @@ module.exports = function(app, models){
     app.get("/api/loggedIn", loggedIn);
     app.post("/api/register", register);
     app.post("/api/logout", logout);
-    app.post("/api/login", passport.authenticate('wam'), login);
+    app.post("/api/login", passport.authenticate('WAM'), login);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
 
-    passport.use('wam',new LocalStrategy(localStrategy));
+    passport.use('WAM', new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
-//    passport.use(new FacebookStrategy(facebookConfig, facebookLogin));
+    var facebookConfig = {
+        clientID     : process.env.FACEBOOK_CLIENT_ID,
+        clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+        callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+    };
+
+    //passport.use('facebook', new FacebookStrategy(facebookConfig, facebookLogin));
 
     function serializeUser(user, done) {
         done(null, user);
@@ -47,7 +54,7 @@ module.exports = function(app, models){
 
     function localStrategy(username, password, done) {
         userModel
-            .findUserByCredentials(username, password)
+            .findUserByUsername(username)
             .then(
                 function(user) {
                     if(user && bcrypt.compareSync(password, user.password)) {
@@ -63,26 +70,26 @@ module.exports = function(app, models){
     }
     
     function loggedIn(req, res) {
-        if(req.isauthenticated()){
+        if(req.isAuthenticated()){
             res.json(req.user);
         } else {
             res.send(false);
         }
     }
 
-    function login(req,res){
+    function login(req, res){
         var user = req.user;
         res.json(user);
     }
 
     function logout(req, res) {
         req.logout();
-        res.sen(200);
+        res.send(200);
     }
 
     function facebookLogin(token, refreshToken, profile, done) {
         res.send(200);
-        userModel
+        userModely
             .findFacebook(profile.id)
             .then(function (facebookuser) {
             return done(null, facebookuser);
@@ -101,9 +108,9 @@ module.exports = function(app, models){
                     res.status(400).send("Username already exist");
                     return;
                 } else {
-                    req.body.password = bcrypt.hashSync(req.body.password);
+                    password = bcrypt.hashSync(req.body.password);
                     return userModel
-                        .createUser(req.body.username, req.body.password);
+                        .createUser({username: username, password: password});
                 }
             }, function (err) {
                 res.status(400).send(err);
