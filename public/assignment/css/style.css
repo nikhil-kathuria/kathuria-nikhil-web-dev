@@ -1,3 +1,6 @@
+span.error {
+    color: darkred;
+}
 
 a:hover{
     text-decoration: none;

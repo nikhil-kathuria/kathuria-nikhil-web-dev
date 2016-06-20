@@ -5,21 +5,38 @@
         {{model.error}}
     </div>
 
-    <h1>Register</h1>
-    <input ng-model="username"
-           type="text"
-           class="form-control"
-           placeholder="username"/>
-    <input ng-model="password1"
-           type="password"
-           class="form-control"
-           placeholder="password"/>
-    <input ng-model="password2"
-           type="password"
-           class="form-control"
-           placeholder="very password"/>
-    <a ng-click="model.register(username, password1, password2)"
-       class="btn btn-primary btn-block">Register</a>
-    <a class="btn btn-danger  btn-block"
-       href="#/login">Cancel</a>
+    <form name="form" novalidate>
+        <h1>Register</h1>
+        <div class="form-group" ng-class="{'has-error': form.username.$touched && form.username.$invalid}">
+            <input ng-model="username"
+                   name="username"
+                   type="text"
+                   class="form-control"
+                   placeholder="username"
+                   required/>
+            <span ng-show="form.username.$touched && form.username.$invalid" class="error">Username is required.</span>
+        </div>
+        <div class="form-group" ng-class="{'has-error': form.password1.$touched && form.password1.$invalid}">
+            <input ng-model="password1"
+                   name="password1"
+                   type="password"
+                   class="form-control"
+                   placeholder="password"
+                   required/>
+            <span ng-show="form.password1.$touched && form.password1.$invalid" class="error">Password is required.</span>
+        </div>
+        <div class="form-group" ng-class="{'has-error': form.password2.$touched && form.password2.$invalid}">
+            <input ng-model="password2"
+                   name="password2"
+                   type="password"
+                   class="form-control"
+                   placeholder="very password"
+                    required/>
+            <span ng-show="form.password2.$touched && form.password2.$invalid" class="error">Password is required.</span>
+        </div>
+        <a ng-click="model.register(username, password1, password2)"
+           class="btn btn-primary btn-block">Register</a>
+        <a class="btn btn-danger  btn-block"
+           href="#/login">Cancel</a>
+    </form>
 </div>
