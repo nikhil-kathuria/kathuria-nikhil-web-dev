@@ -2,3 +2,8 @@
     padding-left: 1vw !important;
     font-family: "Rancho", "Noto Serif", serif;
 }
+
+body {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}

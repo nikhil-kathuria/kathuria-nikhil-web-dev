@@ -13,6 +13,7 @@
     var maxwidth = 400;
     var maxheight = 600;
     var places = [];
+    var deferred = null;
 
 
     function GooglePlaceService($http, $q) {
@@ -33,7 +34,7 @@
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
-                    //console.log(pos);
+
                 }, function () {
                     return false;
                 });
@@ -45,9 +46,8 @@
 
 
         function getPlaces() {
-
-            //var deferred = $q.defer();
-            getLatLng();
+            //deferred = $q.defer();
+            // getLatLng();
             // google.maps.event.addDomListener(window, 'load', getPlaces);
 
             map = new google.maps.Map({
@@ -62,33 +62,50 @@
             };
 
             var service = new google.maps.places.PlacesService(map);
+            console.log("calling nearby");
             return service.nearbySearch(request, embedPhotos);
+            
+            // deferred.resolve(places);
+            // return deferred.promise;
+            
+            console.log("returning");
+            //deferred.resolve(places);
+            // console.log("resolved and now returning");
+            //return deferred.promise;
+
+            deferred.resolve(places);
+            console.log("resolved and now returning");
+            //return deferred.promise;
+
+
 
         }
 
 
 
 
-        function embedPhotos(results, status){
-
-            for(var idx in results){
-                if (idx == 1 ) {
-                    return results;
-                }
-
-                if (results[idx]['photos']) {
-                    photoobj = results[idx]['photos'][0];
-                    results[idx]['icon'] = photoobj.getUrl({'maxWidth': maxwidth, 'maxHeight': maxheight});
-                }
-
-                // /*url = photourl + refid + keyval;
-                // $http.get(url).then(function (response) {
-                //     console.log(response);
-                //     results[idx]['icon'] = response;
-                // */});
-            }
-             return results;
-        }
+        // function embedPhotos(results, status){
+        //
+        //     // for(var idx in results){
+        //     //
+        //     //     if (results[idx]['photos']) {
+        //     //         photoobj = results[idx]['photos'][0];
+        //     //         results[idx]['icon'] = photoobj.getUrl({'maxWidth': maxwidth, 'maxHeight': maxheight});
+        //     //     }
+        //     //
+        //     //     // /*url = photourl + refid + keyval;
+        //     //     // $http.get(url).then(function (response) {
+        //     //     //     console.log(response);
+        //     //     //     results[idx]['icon'] = response;
+        //     //     // */});
+        //     // }
+        //
+        //     console.log("results");
+        //     return results;
+        //
+        //
+        //
+        // }
 
     }
 
