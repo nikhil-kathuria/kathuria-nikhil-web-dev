@@ -4,9 +4,9 @@ var bcrypt = require("bcrypt-nodejs");
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 
-module.exports = function(app, projectmodels){
+module.exports = function(app, model){
 
-    var userModelProject = projectmodels.userModelProject;
+    var userModelProject = model.userModelProject;
 
     app.post("/api/user", createUser);
     app.get("/api/user", getUsers);

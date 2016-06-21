@@ -15,13 +15,10 @@ module.exports = function() {
     mongoose.connect(connectionString);
 
 
-    var projectmodels = {
-        userModelProject: require("./user/user.model.server")()
-        //websiteModel: require("./website/website.model.server.js")(),
-        //pageModel: require("./page/page.model.server")(),
-        //widgetModel: require("./widget/widget.model.server")()
+    var model = {
+        userModelProject: require("./user/user.model.server.js")()
     };
 
-    return projectmodels;
+    return model;
 
 };

@@ -1,6 +1,21 @@
 
-/* responsive text queries */
 
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+span.glyphicon {
+    color: white;
+}
+
+nav.navbar {
+    background-color: #3E7AAB;
+    color: white;
+}
+
+span.glyphicon.glyphicon-search {
+    color: black;
+}
 
 
 div.input-group.search{
@@ -12,12 +27,26 @@ input.form-control {
 }
 
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+}
+
 .brand-logo {
     padding-left: 1vw !important;
     font-family: "Rancho", "Noto Serif", serif;
+    color: white;
 }
 
 body {
+    font-family: Merriweather,'Helvetica Neue',Arial,sans-serif;
+    /*background-color:#f7fbfc;*/
+    background-color: #fbfcfd;
     padding-top: 60px;
     padding-bottom: 60px;
+
 }
