@@ -1,7 +1,8 @@
 module.exports = function(app) {
 
-    var models = require("./models/models.server")();
+    // Project related imports
+    var modelproject = require("./models/models.project.server");
 
-    require("./services/user.service.server.js")(app, models);
+    require("./services/user.service.server")(app, modelproject);
 
 };

@@ -8,9 +8,9 @@ module.exports = function(app) {
     require("./services/widget.service.server.js")(app,models);
 
 
-    app.get("/say/:something", function (req, res){
-       var msg = req.params['something'];
-        res.send(msg);
-    });
+    // Project related imports
+    var modelproject = require("../project/models/models.project.server");
+
+    require("../project/services/user.service.server")(app, modelproject);
 };
 
