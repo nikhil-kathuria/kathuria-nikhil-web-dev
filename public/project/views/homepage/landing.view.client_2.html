@@ -1,0 +1,36 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="#/"
+               class="brand-logo">PlaceConnect</a>
+        </div>
+        <div class="navbar-text pull-right">
+            <a href="#/login">Login</a>
+        </div>
+
+    </div>
+</nav>
+
+
+<div class="container">
+    <div id="wrapper">
+        <div id="columns">
+            <div ng-repeat="place in model.places" class="pin">
+                <img src={{place.photo}}>
+                <div> Name {{place.name}}</div>
+                <div> Category {{place.category}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
+    </div>
+</nav>

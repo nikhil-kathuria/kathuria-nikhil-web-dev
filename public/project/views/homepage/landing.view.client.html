@@ -11,19 +11,38 @@
     </div>
 </nav>
 
-{{model.places[0]}}
+
 
 <div class="container">
-    <div id="wrapper">
-        <div id="columns">
-            <div ng-repeat="place in model.places" class="pin">
-                <img src="{{place.icon}"/>
-                <div> Name {{place.name}}</div>
-                <div> Location {{place.vicinity}}</div>
-            </div>
+    <div class="input-group search">
+        <input ng-model="searchText" type="text" class="form-control">
+    <span class="input-group-btn">
+        <a ng-click="model.searchPlaces(searchText)" class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+    </span>
+    </div>
+    <div class="row">
+        <div ng-repeat="place in model.places" class="col-xs-12">
+            <article class="white-panel">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <img src={{place.photo}}>
+                    </div>
+                </div>
+                    <div class="row">
+                        <hr>
+                        <div class="col-xs-12">
+                        <a href="#">{{place.name}}</a>
+                        <div>{{place.category}}</div>
+                        <div> {{place.address}}, {{place.city}}, {{place.state}}</div>
+                            </div>
+                    </div>
+            </article>
         </div>
     </div>
 </div>
+
 
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

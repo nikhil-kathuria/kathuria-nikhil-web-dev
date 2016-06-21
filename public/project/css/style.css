@@ -1,3 +1,17 @@
+
+/* responsive text queries */
+
+
+
+div.input-group.search{
+    margin-bottom: 10px;
+}
+
+input.form-control {
+    margin-bottom: 5px;
+}
+
+
 .brand-logo {
     padding-left: 1vw !important;
     font-family: "Rancho", "Noto Serif", serif;

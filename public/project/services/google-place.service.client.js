@@ -6,7 +6,7 @@
     var key = "AIzaSyCT75d2yeo-VA776u8ZDWiVxck8ZHsT5EM";
 
     // Allocate a default Langitude and Lattitude
-    var pos = {lat: -33.86755700000001, lng: 151.201527};
+    //var pos = {lat: -33.86755700000001, lng: 151.201527};
     var searchurl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=LAT,LNG&radius=500&type=restaurant&name=cruise&key=API_KEY";
     var photourl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=";
     var keyval = "&key=" + key;

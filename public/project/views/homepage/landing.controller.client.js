@@ -3,29 +3,43 @@
         .module("PlaceConnect")
         .controller("LandingController", LandingController);
 
-    function LandingController($location, GooglePlaceService, FourSquareService) {
+    function LandingController($location, FourSquareService) {
 
         var vm = this;
-        vm.currentPlaces = currentPlaces;
-        vm.place = "My Place";
-        vm.places = [];
+        vm.searchPlaces = searchPlaces;
+        var pos = "-33.86755700000001" + ","  + "151.201527";
 
+        function init(){
 
-        function searchPlaces(){
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    pos = position.coords.latitude + "," + position.coords.longitude;
+                    vm.pos = pos;
+                    console.log(vm.pos);
+                }, function (err) {
+                }, { 
+                    timeout: 5000
+                });
+            }
+            vm.pos = pos;
+            console.log(vm.pos);
+        }
+
+        init();
+
+        function searchPlaces(query){
             FourSquareService
-                .searchPlaces().then( function (response) {
-                    console.log(response.data);
+                .searchPlaces(vm.pos, query)
+                .then( function (response) {
                     var results = response.data['response']['groups'][0]['items'];
                     if(results.length > 0){
                         vm.places = extractPlaces(results);
                     } else {
-                        vm.error = "No places found";
+                        vm.error = "No places of interest found";
                     }
                 }, function (err) {
                     vm.error = "err";
-                }
-
-            );
+                });
         }
 
         function extractPlaces(results){
@@ -35,17 +49,19 @@
                 var myplace = {};
                 var place = results[idx]['venue'];
 
-                if (results['idx']['categories']){
-                    myplace['category'] = results['idx']['categories'][0]['name'];
+                if (place['categories']){
+                    myplace['category'] = place['categories'][0]['name'];
                 }
-
-
 
 
                 myplace['name'] = place['name'];
                 myplace['fid'] = place['id'];
 
                 myplace['address'] = place['location']['address'];
+                myplace['city'] = place['location']['city'];
+                myplace['state'] = place['location']['state'];
+                myplace['country'] = place['location']['country'];
+
                 myplace['lat'] = place['location']['lat'];
                 myplace['lng'] = place['location']['lng'];
 
@@ -70,22 +86,13 @@
                 var url = phobj['prefix'] + "500x300" + phobj['suffix'];
                 return url;
             } else {
-                return "../uploads/default1.png";
+                return "../uploads/default2.jpeg";
             }
         }
-        
-        function currentPlaces(){
-            // GooglePlaceService
-            //     .getPlaces()
-            //     .then(function (response) {
-            //         vm.places = response;
-            //         console.log(vm.places);
-            //     });
-            vm.places = GooglePlaceService.getPlaces();
-            console.log(vm.places);
-        }
 
-        searchPlaces();
+
+
+
     }
 
 })();
