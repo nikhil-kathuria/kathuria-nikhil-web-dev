@@ -3,11 +3,12 @@
         .module("PlaceConnect")
         .controller("LandingController", LandingController);
 
-    function LandingController($location, FourSquareService) {
+    function LandingController($location, FourSquareService, $rootScope) {
 
         var vm = this;
         vm.searchPlaces = searchPlaces;
         var pos = "-33.86755700000001" + ","  + "151.201527";
+        vm.user = $rootScope.currentUser;
 
         function init(){
 

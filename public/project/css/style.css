@@ -1,11 +1,24 @@
 
+a:hover{
+    text-decoration: none;
+}
+
+a.text-navbar {
+    font-family: Merriweather,'Helvetica Neue',Arial,sans-serif;
+    font-weight: 400;
+    color: white;
+}
 
 .navbar-default .navbar-brand {
     color: white;
 }
 
-span.glyphicon {
-    color: white;
+div.navbar-text.pull-right{
+    margin-right: 2%;
+}
+
+div.navbar-text.pull-left{
+    margin-left: 2%;
 }
 
 nav.navbar {
@@ -17,9 +30,14 @@ span.glyphicon.glyphicon-search {
     color: black;
 }
 
+span.glyphicon {
+    color: white;
+}
+
 
 div.input-group.search{
-    margin-bottom: 10px;
+    margin-bottom: 1.5%;
+    margin-top: 1.5%;
 }
 
 input.form-control {
@@ -36,7 +54,7 @@ h6 {
     font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
 }
 
-.brand-logo {
+.brand-logo, .brand-logo:hover {
     padding-left: 1vw !important;
     font-family: "Rancho", "Noto Serif", serif;
     color: white;
@@ -44,7 +62,6 @@ h6 {
 
 body {
     font-family: Merriweather,'Helvetica Neue',Arial,sans-serif;
-    /*background-color:#f7fbfc;*/
     background-color: #fbfcfd;
     padding-top: 60px;
     padding-bottom: 60px;

@@ -5,7 +5,10 @@
                class="brand-logo">PlaceConnect</a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="#/login">Login</a>
+            <a class="text-navbar" href="#/login">Login</a>
+        </div>
+        <div class="navbar-text pull-right">
+            <a class="text-navbar" href="#/register">Reigster</a>
         </div>
 
     </div>
@@ -15,28 +18,31 @@
 
 <div class="container">
     <div class="input-group search">
-        <input ng-model="searchText" type="text" class="form-control">
-    <span class="input-group-btn">
+        <input ng-model="searchText"
+               type="text" class="form-control"
+               palceholder="Search for PLACES OF INTEREST around YOU!">
+        <span class="input-group-btn">
         <a ng-click="model.searchPlaces(searchText)" class="btn btn-default" type="button">
             <span class="glyphicon glyphicon-search"></span>
         </a>
     </span>
     </div>
     <div class="row">
-        <div ng-repeat="place in model.places" class="col-xs-12">
+        <div ng-repeat="place in model.places" class="col-sm-6 col-md-4">
             <article class="white-panel">
                 <div class="row">
                     <div class="col-xs-12">
-                        <img src={{place.photo}}>
+                        <img class="img-responsive" alt="500x300" ng-src="{{place.photo}}">
+
                     </div>
                 </div>
-                    <div class="row">
-                        <hr>
-                        <div class="col-xs-12">
+                <div class="row">
+                    <hr>
+                    <div class="col-xs-12">
                         <a href="#">{{place.name}}</a>
                         <div>{{place.category}}</div>
                         <div> {{place.address}}, {{place.city}}, {{place.state}}</div>
-                            </div>
+                    </div>
                     </div>
             </article>
         </div>
@@ -47,10 +53,5 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
-        <p class="navbar-text pull-right">
-            <a href="#/user/{{model.userId}}">
-                <span class="glyphicon glyphicon-user"></span>
-            </a>
-        </p>
     </div>
 </nav>
