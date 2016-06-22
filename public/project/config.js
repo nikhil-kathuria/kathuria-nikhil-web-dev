@@ -29,6 +29,14 @@
                 resolve: {
                     loggedIn: checkLoggedIn
                 }
+            }).when("/user/:userId/place", {
+                templateUrl: "views/place/place.view.client.html",
+                controller: "views/place/place.controller.client.html",
+                controllerAs: "model"
+            }).when("/user/:userId/bucket", {
+                templateUrl: "views/bucket/bucket.view.client.html",
+                controller: "views/bucket/bucket.controller.client.html",
+                controllerAs: "model"
             }).otherwise({
                 redirectTo: "/landing"
         });

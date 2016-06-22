@@ -14,7 +14,7 @@ module.exports = function() {
         deleteUser: deleteUser,
         findUserByFacebookId: findUserByFacebookId,
         findUserByGoogleId : findUserByGoogleId,
-        updateProfilePic: updateProfilePic,
+        updateProfilePic: updateProfilePic
     };
     return api;
 
