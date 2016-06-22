@@ -29,48 +29,79 @@
         {{model.error}}
     </div>
 
-    <form>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input ng-model="model.user.username"
-                   type="text"
-                   class="form-control"
-                   id="username"
-                   placeholder="alice"/>
-        </div>
-        <div class="form-group">
-            <label for="email">Email address</label>
-            <input ng-model="model.user.email"
-                   type="email"
-                   class="form-control"
-                   id="email"
-                   placeholder="alice@wonderland.com"/>
-        </div>
-        <div class="form-group">
-            <label for="first">First Name</label>
-            <input ng-model="model.user.firstName"
-                   type="text"
-                   class="form-control"
-                   id="first"
-                   placeholder="Alice"/>
-        </div>
-        <div class="form-group">
-            <label for="last">Last Name</label>
-            <input ng-model="model.user.lastName"
-                   type="text"
-                   class="form-control"
-                   id="last"
-                   placeholder="Wonderland"/>
-        </div>
-    </form>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form>
+                <img src={{model.user.pic}} class="center-block img-circle img-responsive">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input ng-model="model.user.username"
+                           type="text"
+                           class="form-control"
+                           id="username"
+                           placeholder="alice"/>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input ng-model="model.user.email"
+                           type="email"
+                           class="form-control"
+                           id="email"
+                           placeholder="alice@wonderland.com"/>
+                </div>
+                <div class="form-group">
+                    <label for="first">First Name</label>
+                    <input ng-model="model.user.firstName"
+                           type="text"
+                           class="form-control"
+                           id="first"
+                           placeholder="Alice"/>
+                </div>
+                <div class="form-group">
+                    <label for="last">Last Name</label>
+                    <input ng-model="model.user.lastName"
+                           type="text"
+                           class="form-control"
+                           id="last"
+                           placeholder="Wonderland"/>
+                </div>
+            </form>
 
-    <a class="btn btn-primary btn-block"
-       href="#/user/{{model.user._id}}/website">Websites</a>
-    <a class="btn btn-danger btn-block"
-       href="#/login">Logout</a>
-    <a ng-click="model.unregister()" class="btn btn-danger  btn-block">
-        Unregister
-    </a>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form action="/api/profilepicupload"  method="post" enctype="multipart/form-data" class="form-group">
+                <input  name="myFile"   type="file" class="form-control"/>
+                <input  name="userId" value="{{model.user._id}}"   style="display: none"/>
+                <button type="submit"   class="btn btn-block btn-primary">Upload Profile Pic</button>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <a class="btn btn-primary btn-block"
+               href="#/user/{{model.user._id}}/place">Places</a>
+            <a class="btn btn-primary btn-block"
+               href="#/user/{{model.user._id}}/bucket">Buckets</a>
+            <a class="btn btn-primary btn-block"
+               href="#/user/{{model.user._id}}/similar">People like me</a>
+        </div>
+    </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <a class="btn btn-danger btn-block"
+               href="#/login">Logout</a>
+            <a ng-click="model.unregister()" class="btn btn-danger  btn-block">
+                Unregister</a>
+        </div>
+    </div>
+
 </div>
 
 

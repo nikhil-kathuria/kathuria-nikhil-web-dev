@@ -13,7 +13,8 @@ module.exports = function() {
         updateUser: updateUser,
         deleteUser: deleteUser,
         findUserByFacebookId: findUserByFacebookId,
-        findUserByGoogleId : findUserByGoogleId
+        findUserByGoogleId : findUserByGoogleId,
+        updateProfilePic: updateProfilePic,
     };
     return api;
 
@@ -25,6 +26,15 @@ module.exports = function() {
                 $set: {
                     firstName: user.firstName,
                     lastName: user.lastName
+                }
+            });
+    }
+    
+    function updateProfilePic(userId, picurl){
+        return UserProject
+            .update({_id: userId },{
+                $set: {
+                    pic: picurl
                 }
             });
     }

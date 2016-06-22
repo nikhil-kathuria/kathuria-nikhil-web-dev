@@ -87,7 +87,7 @@
                 var url = phobj['prefix'] + "500x300" + phobj['suffix'];
                 return url;
             } else {
-                return "../uploads/default2.jpeg";
+                return "/uploads/missing_place_pic.jpeg";
             }
         }
 

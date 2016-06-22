@@ -11,7 +11,7 @@ module.exports = function() {
         country: String,
         lat: Number,
         lng: Number,
-        photo: String
+        photo: {type : String}
 
     }, {collection: "project.place"});
 

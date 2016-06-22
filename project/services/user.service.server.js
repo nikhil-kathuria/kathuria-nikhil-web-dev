@@ -7,6 +7,8 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 module.exports = function(app, model){
 
     var userModelProject = model.userModelProject;
+    var multer = require('multer');
+    var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
     app.post("/api/user", createUser);
     app.get("/api/user", getUsers);
@@ -17,6 +19,7 @@ module.exports = function(app, model){
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
+    app.post("/api/profilepicupload", upload.single('myFile'), uploadProfilePic);
 
 
 
@@ -41,6 +44,20 @@ module.exports = function(app, model){
     };
     passport.use('google',new GoogleStrategy(googleConfig, googleStrategy));
 
+    function uploadProfilePic(req, res) {
+        var width = req.body.width;
+        var myFile = req.file;
+        var redirecturl = "/project/#/user";
+        var userId = req.body.userId;
+        
+
+        if(myFile) {
+            var filename = myFile.filename;
+            var url = "/uploads/" + filename;
+            userModelProject.updateProfilePic(userId, url);
+        }
+        res.redirect(redirecturl);
+    }
 
     function serializeUser(user, done) {
         done(null, user);

@@ -8,6 +8,7 @@ module.exports = function() {
         lastName: String,
         email: String,
         moderator:  { type: Boolean, default: false},
+        pic: {type : String , default: "/uploads/missing_profile_pic.jpg"},
         google:{
             token:String,
             id:String
