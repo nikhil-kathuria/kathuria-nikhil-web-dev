@@ -6,9 +6,8 @@ module.exports = function(app, model){
     var multer = require('multer');
     var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
-    app.get("/api/users/places/:userId", findUserPlaces);
+    app.get("/api/users/:userId/places", findUserPlaces);
     app.get("/api/users/similar/:userId", findSimilarUsers);
-
 
 
 
@@ -46,6 +45,8 @@ module.exports = function(app, model){
                         var rank = getRecomendation(ids, all);
                         res.json(rank);
                 })
+            }, function (err) {
+                vm.error="No Similar users found";
             });
     }
 

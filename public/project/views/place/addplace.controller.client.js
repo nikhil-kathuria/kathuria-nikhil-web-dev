@@ -3,7 +3,7 @@
         .module("PlaceConnect")
         .controller("AddPlaceController", AddPlaceController);
 
-    function LandingController($location, FourSquareService, $rootScope) {
+    function AddPlaceController($location, FourSquareService, $rootScope) {
 
         var vm = this;
         vm.user = $rootScope.currentUser;

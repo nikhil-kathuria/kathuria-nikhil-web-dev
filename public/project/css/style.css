@@ -5,7 +5,7 @@ a:hover{
 
 a.text-navbar {
     font-family: Merriweather,'Helvetica Neue',Arial,sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     color: white;
 }
 
@@ -30,10 +30,22 @@ span.glyphicon.glyphicon-search {
     color: black;
 }
 
+span.glyphicon.glyphicon-search {
+    color: #3E7AAB
+}
+
 span.glyphicon {
     color: white;
 }
 
+
+img.profile-pic{
+    min-height: 200px;
+    max-height: 400px;
+    min-width: 200px;
+    max-width: 400px;
+    height: 10%!important;
+}
 
 div.input-group.search{
     margin-bottom: 1.5%;

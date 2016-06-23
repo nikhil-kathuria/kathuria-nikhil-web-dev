@@ -22,16 +22,23 @@
                 templateUrl: "views/user/register.view.client.html",
                 controller: "RegisterController",
                 controllerAs: "model"
-            }).when("/user", {
+            })
+            .when("/user", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model",
                 resolve: {
                     loggedIn: checkLoggedIn
                 }
-            }).when("/user/:userId/place", {
+            })
+            .when("/user/:userId/place", {
                 templateUrl: "views/place/place.view.client.html",
                 controller: "PlaceController",
+                controllerAs: "model"
+            })
+            .when("/user/:userId/place/add", {
+                templateUrl: "views/place/addplace.view.client.html",
+                controller: "AddPlaceController",
                 controllerAs: "model"
             })
             .when("/user/:userId/bucket", {

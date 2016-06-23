@@ -11,12 +11,12 @@
         
         return api;
         
-        function findUserPlaceIds(userID){
+        function findUserPlaceIds(userId){
             
         }
         
-        function findUserPlaces(userID) {
-            $http.get("/api/user/places/" + userId);
+        function findUserPlaces(userId) {
+            return $http.get("/api/user/" + userId + "/places");
         }
 
 
