@@ -8,10 +8,18 @@ module.exports = function() {
         createPlace: createPlace,
         updatePlace: updatePlace,
         deletePlace: deletePlace,
-        findPlaceById: findPlaceById
+        findPlaceById: findPlaceById,
+        updatePlace: updatePlace,
+        findPlaceByIds: findPlaceByIds
     };
 
     return api;
+
+    function findPlaceByIds(ids){
+        return Place.find({fid:
+            { $in: ids }
+        });
+    }
 
     function createPlace(place) {
         return Place.create(place);
@@ -22,7 +30,7 @@ module.exports = function() {
         return Place
             .update({_id: placeId },{
                 $set: {
-                    category: place.category,
+                    category : place.category,
                     photo : place.photo
                 }
             });

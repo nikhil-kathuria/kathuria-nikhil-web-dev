@@ -14,7 +14,8 @@ module.exports = function() {
         deleteUser: deleteUser,
         findUserByFacebookId: findUserByFacebookId,
         findUserByGoogleId : findUserByGoogleId,
-        updateProfilePic: updateProfilePic
+        updateProfilePic: updateProfilePic,
+        findPlaceIds: findPlaceIds
     };
     return api;
 
@@ -37,6 +38,10 @@ module.exports = function() {
                     pic: picurl
                 }
             });
+    }
+    
+    function findPlaceIds(userId){
+        
     }
 
     function deleteUser(userId) {

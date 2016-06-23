@@ -1,26 +1,18 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-text pull-left">
-            <a href="#/"
-               class="brand-logo">PlaceConnect</a>
+        <div class="navbar-header pull-left">
+            <a class="navbar-brand" href="">
+                Search To Add Places
+            </a>
         </div>
-        <div class="navbar-text pull-right">
-            <a class="text-navbar" href="#/login">Login</a>
-        </div>
-        <div class="navbar-text pull-right">
-            <a class="text-navbar" href="#/register">Reigster</a>
-        </div>
-
     </div>
 </nav>
-
-
 
 <div class="container">
     <div class="input-group search">
         <input ng-model="searchText"
                type="text" class="form-control"
-               placeholder="Search places around YOU!">
+               placeholder="Enter name of place to Begin!">
         <span class="input-group-btn">
         <a ng-click="model.searchPlaces(searchText)" class="btn btn-default" type="button">
             <span class="glyphicon glyphicon-search"></span>
@@ -52,5 +44,14 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href=""
+               class="brand-logo">PlaceConnect</a>
+        </div>
+        <p class="navbar-text pull-right">
+            <a href="#/user">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
     </div>
 </nav>

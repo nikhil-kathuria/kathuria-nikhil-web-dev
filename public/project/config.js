@@ -31,13 +31,15 @@
                 }
             }).when("/user/:userId/place", {
                 templateUrl: "views/place/place.view.client.html",
-                controller: "views/place/place.controller.client.html",
+                controller: "PlaceController",
                 controllerAs: "model"
-            }).when("/user/:userId/bucket", {
+            })
+            .when("/user/:userId/bucket", {
                 templateUrl: "views/bucket/bucket.view.client.html",
-                controller: "views/bucket/bucket.controller.client.html",
+                controller: "BucketController",
                 controllerAs: "model"
-            }).otherwise({
+            })
+            .otherwise({
                 redirectTo: "/landing"
         });
 
