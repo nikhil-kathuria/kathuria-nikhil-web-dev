@@ -1,5 +1,11 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/place" class="navbar-link">
+                  <span class="glyphicon glyphicon-chevron-left">
+                  </span>
+            </a>
+        </div>
         <div class="navbar-header pull-left">
             <a class="navbar-brand" href="">
                 Search To Add Places
@@ -9,17 +15,19 @@
 </nav>
 
 <div class="container">
-    <div class="input-group search">
+    <div class="input-group search inline">
         <input ng-model="searchInterest"
                type="text" class="form-control"
                placeholder="Your Interest">
         <input ng-model="searchPlace"
                type="text" class="form-control"
-               placeholder="Place Name like Boston MA!">
+               placeholder="Place Name like Boston MA">
         <span class="input-group-btn">
-        <a ng-click="model.searchPlaces(searchPlace, searchInterest)" class="btn btn-default" type="button">
+        <div> <a ng-click="model.serchByProximity(searchPlace, searchInterest)" class="btn btn-default" type="button">
             <span class="glyphicon glyphicon-search"></span>
         </a>
+        </div>
+
     </span>
     </div>
     <div class="row">
@@ -32,13 +40,13 @@
                 </div>
                 <div class="row">
                     <hr>
-                    <div class="col-xs-14 col-md-8">
+                    <div class="col-xs-12 col-md-8 col-lg-12">
                         <a href="#">{{place.name}}</a>
                         <div>{{place.category}}</div>
                         <div> {{place.address}}, {{place.city}}, {{place.state}}</div>
                     </div>
-                    <div class="col-xs-4 col-md-3">
-                    <a ng-click="model.addplace(place)"> <span class="glyphicon glyphicon-plus"></span> </a>
+                    <div class="col-xs-4 col-md-3 col-lg-2">
+                        <a ng-click="model.addPlace(place)"> <span class="glyphicon glyphicon-plus add"></span> </a>
                     </div>
                 </div>
             </article>

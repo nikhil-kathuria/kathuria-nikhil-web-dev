@@ -30,8 +30,16 @@ span.glyphicon.glyphicon-search {
     color: black;
 }
 
-span.glyphicon.glyphicon-search {
+span.glyphicon.glyphicon-search.mybar {
     color: #3E7AAB
+}
+
+span.glyphicon.glyphicon-plus.add {
+    color: #3E7AAB
+}
+
+div .input-group .search .inline {
+    display: inline-block;
 }
 
 span.glyphicon {

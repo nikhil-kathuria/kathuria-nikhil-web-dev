@@ -14,7 +14,6 @@ img {
     border: 2px solid #eee;
 }
 .white-panel {
-    position: relative;
     background: white;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
     padding: 3%;
@@ -25,6 +24,5 @@ img {
     color: #A92733;
 }
 .white-panel:hover {
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-    margin-top: -5px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
 }

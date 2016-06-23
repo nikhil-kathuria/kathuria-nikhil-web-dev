@@ -34,13 +34,14 @@
     
     function serchByProximity(near, query) {
         var finalquery = query.replace(/\s+/g, '%20');
-        var proximity = query.replace(/\s+/g, ',');
+        var proximity = near.replace(/\s+/g, ',');
         var url = fsqr2
             .replace("CLNTID", client_id)
             .replace("CLNTSCRT", client_secret)
             .replace("QURY", finalquery)
             .replace("NEAR", proximity);
 
+        console.log(url);
         return $http.get(url);
     }
 

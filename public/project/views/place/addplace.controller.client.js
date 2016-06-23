@@ -3,17 +3,22 @@
         .module("PlaceConnect")
         .controller("AddPlaceController", AddPlaceController);
 
-    function AddPlaceController($location, FourSquareService, $rootScope) {
+    function AddPlaceController($location, FourSquareService, $rootScope, $routeParams) {
 
         var vm = this;
-        vm.user = $rootScope.currentUser;
-        vm.searchPlaces = searchPlaces;
+        vm.userId = $routeParams.userId;
+        vm.serchByProximity = serchByProximity;
+        vm.addPlace = appPlace;
 
 
-        function searchPlaces(word, query){
+        function appPlace(place){
+
+        }
+
+        function serchByProximity(word, query){
             if (word && query){
             FourSquareService
-                .searchPlaces(word, query)
+                .serchByProximity(word, query)
                 .then( function (response) {
                     var results = response.data['response']['groups'][0]['items'];
                     if(results.length > 0){

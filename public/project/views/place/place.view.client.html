@@ -1,14 +1,20 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="#/user/" class="navbar-link">
+                  <span class="glyphicon glyphicon-chevron-left">
+                  </span>
+            </a>
+        </div>
         <div class="navbar-header pull-left">
             <a class="navbar-brand" href="">
                 My Places
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a
+            <a href="#/user/{{model.userId}}/place/add"
                class="navbar-link">
-                <span class="glyphicon glyphicon-search">
+                <span class="glyphicon glyphicon-search mybar">
                 </span>
             </a>
         </div>
@@ -17,6 +23,7 @@
 
 
 <div class="container">
+    {{model.places}}
     <ul class="list-group">
         <li ng-repeat="place in model.places" class="col-sm-6 col-md-4">
             <article class="white-panel">
