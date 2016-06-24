@@ -41,6 +41,11 @@
                 controller: "AddPlaceController",
                 controllerAs: "model"
             })
+            .when("/user/:userId/place/:placeId", {
+                templateUrl: "views/place/showplace.view.client.html",
+                controller: "ShowPlaceController",
+                controllerAs: "model"
+            })
             .when("/user/:userId/bucket", {
                 templateUrl: "views/bucket/bucket.view.client.html",
                 controller: "BucketController",

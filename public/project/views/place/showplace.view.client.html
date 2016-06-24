@@ -1,0 +1,71 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/place" class="navbar-link">
+                  <span class="glyphicon glyphicon-chevron-left">
+                  </span>
+            </a>
+        </div>
+        <div class="navbar-header pull-left">
+            <a class="navbar-brand" href="">
+                Place Details
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading panel-heading-custom">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6  v-center">
+                    <h4>Place Image</h4>
+                    <img class="img-responsive details" ng-src="{{model.place.photo}}">
+                    </div>
+                <div class="col-xs-6 col-sm-6 col-md-6  v-center">
+                    <h4>Place Map</h4>
+                    <img class="img-responsive details" ng-src="{{model.place.map}}">
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-body">
+            <div class="col-xs-12 col-sm-8 col-md-6 v-center">
+            <H5 class="text-center"> Details </H5>
+
+
+            <!-- List group -->
+            <ul class="list-group">
+                <li class="list-group-item text-center"><b> Name :</b> {{model.place.name}}</li>
+                <li class="list-group-item text-center"> <b> Category :</b> {{model.place.category}}</li>
+                <li class="list-group-item text-center"><b> Street :</b> {{model.place.address}}</li>
+                <li class="list-group-item text-center"><b> City :</b> {{model.place.city}}</li>
+                <li class="list-group-item text-center"><b> State :</b> {{model.place.state}}</li>
+                <li class="list-group-item text-center"><b> Country :</b> {{model.place.country}}</li>
+                <li class="list-group-item text-center"><b> Lattitude :</b> {{model.place.lat}}</li>
+                <li class="list-group-item text-center"><b> Longitude :</b> {{model.place.lng}}</li>
+            </ul>
+        </div>
+        </div>
+
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href=""
+               class="brand-logo">PlaceConnect</a>
+        </div>
+        <p class="navbar-text pull-right">
+            <a href="#/user">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
+    </div>
+</nav>

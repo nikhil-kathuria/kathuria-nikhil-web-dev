@@ -10,7 +10,8 @@ module.exports = function() {
         deletePlace: deletePlace,
         findPlaceById: findPlaceById,
         updatePlace: updatePlace,
-        findPlaceByIds: findPlaceByIds
+        findPlaceByIds: findPlaceByIds,
+        findPlaceByFid: findPlaceByFid
     };
 
     return api;
@@ -20,6 +21,10 @@ module.exports = function() {
             { $in: ids }
         });
         return obj;
+    }
+
+    function findPlaceByFid(id){
+        return Place.findOne({fid: id });
     }
 
     function createPlace(place) {

@@ -9,8 +9,20 @@ module.exports = function(app, model){
     app.get("/api/user/:userId/places", findUserPlaces);
     app.get("/api/user/similar/:userId", findSimilarUsers);
     app.post("/api/user/:userId/addplace", addUserPlace);
+    app.get("/api/place/:Fid", findPlaceByFid);
 
 
+    function findPlaceByFid(req, res){
+        var fid = req.params.Fid;
+        placeModel
+            .findPlaceByFid(fid)
+            .then(function ( place) {
+                res.json(place);
+            }, function (err) {
+                res.status(404).send("Place not found :(")
+            });
+    }
+    
     function addUserPlace(req, res){
         var userId = req.params.userId;
         var place = req.body;

@@ -59,6 +59,14 @@ img.profile-pic{
     height: 10%!important;
 }
 
+img.img-responsive.details {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px 5px 5px 5px;
+    border: 2px solid #eee;
+}
+
 div.input-group.search{
     margin-bottom: 1.5%;
     margin-top: 1.5%;

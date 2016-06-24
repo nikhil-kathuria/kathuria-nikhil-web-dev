@@ -7,10 +7,15 @@
         var api = {
             findUserPlaceIds:findUserPlaceIds,
             findUserPlaces : findUserPlaces,
-            addUserPlace:addUserPlace
+            addUserPlace:addUserPlace,
+            findPlaceByFid: findPlaceByFid
         };
         
         return api;
+
+        function findPlaceByFid(fid) {
+            return $http.get("/api/place/" + fid);
+        }
 
         function addUserPlace(userId, place){
             return $http.post("/api/user/" + userId + "/addplace/",  place);
