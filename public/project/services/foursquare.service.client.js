@@ -40,8 +40,7 @@
             .replace("CLNTSCRT", client_secret)
             .replace("QURY", finalquery)
             .replace("NEAR", proximity);
-
-        console.log(url);
+        
         return $http.get(url);
     }
 

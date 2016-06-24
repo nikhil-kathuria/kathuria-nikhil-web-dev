@@ -5,7 +5,7 @@ module.exports = function() {
         name: String,
         createdBy: String,
         type: String,
-        places : [{ type :mongoose.Schema.Types.ObjectId, ref: 'Place'}],
+        places : [{ type : String}],
         dateAdded: {type: Date, default: Date.now}
     }, {collection: "project.bucket"});
 

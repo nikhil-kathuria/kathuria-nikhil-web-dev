@@ -15,10 +15,24 @@ module.exports = function() {
         findUserByFacebookId: findUserByFacebookId,
         findUserByGoogleId : findUserByGoogleId,
         updateProfilePic: updateProfilePic,
-        findPlaceIds: findPlaceIds
+        findPlaceIds: findPlaceIds,
+        addPlace: addPlace,
+        removePlace: removePlace
     };
     return api;
 
+    function addPlace(userId, fid){
+        return UserProject.update({_id: userId},
+            { $addToSet:
+                {places: fid}}
+        );
+    }
+
+    function removePlace(userId, fid) {
+        return UserProject.update( {_id: userId},
+            { $pull:
+            {places:  fid} } );
+    }
 
     function updateUser(userId, user) {
         delete user._id;

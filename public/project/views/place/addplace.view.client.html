@@ -15,6 +15,10 @@
 </nav>
 
 <div class="container">
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
     <div class="input-group search inline">
         <input ng-model="searchInterest"
                type="text" class="form-control"
@@ -44,8 +48,6 @@
                         <a href="#">{{place.name}}</a>
                         <div>{{place.category}}</div>
                         <div> {{place.address}}, {{place.city}}, {{place.state}}</div>
-                    </div>
-                    <div class="col-xs-4 col-md-3 col-lg-2">
                         <a ng-click="model.addPlace(place)"> <span class="glyphicon glyphicon-plus add"></span> </a>
                     </div>
                 </div>
@@ -53,6 +55,7 @@
         </div>
     </div>
 </div>
+
 
 
 

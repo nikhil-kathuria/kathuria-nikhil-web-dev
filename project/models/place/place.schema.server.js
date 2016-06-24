@@ -3,7 +3,7 @@ module.exports = function() {
 
     var PlaceSchema = mongoose.Schema({
         name: {type: String, required: true},
-        fid: String,
+        fid: {type: String, required: true, dropDups: true },
         category: String,
         address: String,
         city: String,

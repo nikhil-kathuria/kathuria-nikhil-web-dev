@@ -6,9 +6,30 @@ module.exports = function(app, model){
     var multer = require('multer');
     var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
-    app.get("/api/users/:userId/places", findUserPlaces);
-    app.get("/api/users/similar/:userId", findSimilarUsers);
+    app.get("/api/user/:userId/places", findUserPlaces);
+    app.get("/api/user/similar/:userId", findSimilarUsers);
+    app.post("/api/user/:userId/addplace", addUserPlace);
 
+
+    function addUserPlace(req, res){
+        var userId = req.params.userId;
+        var place = req.body;
+        var fid = place['fid'];
+
+        placeModel
+            .createPlace(place)
+            .then(function (response) {
+                userModelProject
+                    .addPlace(userId, fid)
+                    .then(function (response) {
+                        res.send(200);
+                    }, function(err) {
+                        res.status(400).send("The place was not added");
+                    });
+        }, function (err) {
+                res.status(400).send("The place was not added");
+            });
+    }
 
 
     function findUserPlaces(req, res) {

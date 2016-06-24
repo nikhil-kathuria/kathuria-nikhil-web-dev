@@ -10,7 +10,14 @@
         vm.userId = $routeParams.userId;
         
         function init() {
-            vm.places = PlaceService.findUserPlaces(vm.userId);
+            PlaceService.
+            findUserPlaces(vm.userId)
+                .then(function (places) {
+                    vm.places = places.data;
+                }, function (err) {
+                    vm.error = "No places found. Add them by Clicking Top-Left"
+                });
+            
         }
         init();
     }

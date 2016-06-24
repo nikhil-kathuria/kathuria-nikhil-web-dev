@@ -30,11 +30,15 @@ span.glyphicon.glyphicon-search {
     color: black;
 }
 
-span.glyphicon.glyphicon-search.mybar {
-    color: #3E7AAB
+span.glyphicon.glyphicon-plus.mybar {
+    color: White;
 }
 
 span.glyphicon.glyphicon-plus.add {
+    color: #3E7AAB
+}
+
+span.glyphicon.glyphicon-globe.add {
     color: #3E7AAB
 }
 

@@ -3,7 +3,7 @@
         .module("PlaceConnect")
         .controller("AddPlaceController", AddPlaceController);
 
-    function AddPlaceController($location, FourSquareService, $rootScope, $routeParams) {
+    function AddPlaceController($location, FourSquareService, $rootScope, $routeParams, PlaceService) {
 
         var vm = this;
         vm.userId = $routeParams.userId;
@@ -12,7 +12,13 @@
 
 
         function appPlace(place){
-
+            PlaceService
+                .addUserPlace(vm.userId, place)
+                .then(function () {
+                    $location.url("/user/" + vm.userId + "/place");
+                }, function(err){
+                    vm.error = err;
+            });
         }
 
         function serchByProximity(word, query){

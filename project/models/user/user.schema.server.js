@@ -13,8 +13,8 @@ module.exports = function() {
             token:String,
             id:String
         },
-        places: [{type: mongoose.Schema.Types.ObjectId, ref: 'Place'}],
-        bucketlist: [{type: mongoose.Schema.Types.ObjectId, ref: 'Bucketlist'}],
+        places: [{type: String}],
+        bucketlist: [{type: mongoose.Schema.Types.ObjectId, ref: 'bucket'}],
         dateCreated: {type: Date, default: Date.now}
     }, {collection: "project.user"});
 

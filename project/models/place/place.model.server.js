@@ -16,9 +16,10 @@ module.exports = function() {
     return api;
 
     function findPlaceByIds(ids){
-        return Place.find({fid:
+        var obj = Place.find({fid:
             { $in: ids }
         });
+        return obj;
     }
 
     function createPlace(place) {

@@ -6,10 +6,15 @@
     function PlaceService($http) {
         var api = {
             findUserPlaceIds:findUserPlaceIds,
-            findUserPlaces : findUserPlaces
+            findUserPlaces : findUserPlaces,
+            addUserPlace:addUserPlace
         };
         
         return api;
+
+        function addUserPlace(userId, place){
+            return $http.post("/api/user/" + userId + "/addplace/",  place);
+        }
         
         function findUserPlaceIds(userId){
             
