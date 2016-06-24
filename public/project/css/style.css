@@ -51,6 +51,17 @@ span.glyphicon {
 }
 
 
+.img-thumbnail{
+    min-height: 350px;
+    height: 350px!important;
+}
+
+.detail-review-img{
+    min-height: 100px;
+    height: 100px!important;
+    width: 100px;
+}
+
 img.profile-pic{
     min-height: 200px;
     max-height: 400px;
