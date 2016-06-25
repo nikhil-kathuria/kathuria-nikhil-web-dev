@@ -6,6 +6,7 @@
     function ShowPlaceController($location, $rootScope, $routeParams, PlaceService) {
         var vm = this;
         vm.submitReview = submitReview;
+        vm.deleteReview = deleteReview
         vm.fid = $routeParams.placeId;
         vm.sessionUser = $rootScope.sessionUser;
 
@@ -52,6 +53,18 @@
                     vm.error = "Something went wrong";
                 });
 
+
+        }
+
+
+        function deleteReview(rid) {
+            PlaceService
+                .deleteReview(vm.fid, rid)
+                .then(function (response) {
+                    init();
+                }, function (err) {
+                    vm.error = "Something went wrong";
+                })
 
         }
 

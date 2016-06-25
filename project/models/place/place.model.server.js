@@ -13,9 +13,20 @@ module.exports = function() {
         findPlaceByIds: findPlaceByIds,
         findPlaceByFid: findPlaceByFid,
         addPlaceReview: addPlaceReview,
+        deletePlaceReview:deletePlaceReview
     };
 
     return api;
+    
+    
+    function deletePlaceReview(id, rid) {
+        return Place.remove({fid: id},
+            { $pull :
+                {
+                    reviews: {_id: rid}
+                }
+        });
+    }
 
 
     function addPlaceReview(id, review) {

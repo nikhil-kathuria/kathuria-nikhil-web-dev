@@ -11,10 +11,15 @@
             findPlaceByFid: findPlaceByFid,
             findSimilarUsers: findSimilarUsers,
             addPlaceReview: addPlaceReview,
-            getPlaceReviews: getPlaceReviews
+            getPlaceReviews: getPlaceReviews,
+            deleteReview : deleteReview
         };
         
         return api;
+
+        function deleteReview(fid, rid) {
+            return $http.delete("/api/place/" + fid +  "/review/" + rid);
+        }
 
         function getPlaceReviews(fid) {
             return $http.get("/api/place" + fid + "review");

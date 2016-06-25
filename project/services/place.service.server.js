@@ -12,7 +12,20 @@ module.exports = function(app, model){
     app.get("/api/place/:Fid", findPlaceByFid);
     app.post("/api/place/:Fid/addreview", addPlaceReview);
     app.get("/api/place/:Fid/review", getPlaceReviews);
+    app.delete("/api/place/:Fid/review/:reviewId", deletePlaceReview);
 
+    
+    function deletePlaceReview(req, res) {
+        var rid = req.params.reviewId;
+        var fid = req.params.Fid;
+        placeModel
+            .deletePlaceReview(fid, rid)
+            .then(function (rid) {
+                res.status(200);
+        }, function(err){
+                res.status(400).send("Error occurred");
+            });
+    }
     
     function getPlaceReviews(req, res) {
         var fid = req.params.Fid;
@@ -22,7 +35,7 @@ module.exports = function(app, model){
                 var review = place.reviews;
                 res.json(reviews);
             }, function (err) {
-                res.status(404).send("Not reviews available for this post")
+                res.status(404).send("No reviews available for this post")
             });
     }
 
