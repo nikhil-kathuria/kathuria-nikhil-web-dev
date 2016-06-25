@@ -17,9 +17,14 @@ module.exports = function() {
         updateProfilePic: updateProfilePic,
         findPlaceIds: findPlaceIds,
         addPlace: addPlace,
-        removePlace: removePlace
+        removePlace: removePlace,
+        getAllUsers: getAllUsers
     };
     return api;
+
+    function getAllUsers() {
+        return UserProject.find();
+    }
 
     function addPlace(userId, fid){
         return UserProject.update({_id: userId},

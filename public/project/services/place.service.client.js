@@ -8,7 +8,8 @@
             findUserPlaceIds:findUserPlaceIds,
             findUserPlaces : findUserPlaces,
             addUserPlace:addUserPlace,
-            findPlaceByFid: findPlaceByFid
+            findPlaceByFid: findPlaceByFid,
+            findSimilarUsers: findSimilarUsers
         };
         
         return api;
@@ -29,7 +30,9 @@
             return $http.get("/api/user/" + userId + "/places");
         }
 
-
+        function findSimilarUsers(userId) {
+            return $http.get("/api/user/" + userId + "/similar");
+        }
     }
     
 })();

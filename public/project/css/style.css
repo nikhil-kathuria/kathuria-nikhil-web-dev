@@ -3,12 +3,24 @@ a:hover{
     text-decoration: none;
 }
 
+
 a.text-navbar {
     font-family: Merriweather,'Helvetica Neue',Arial,sans-serif;
     font-weight: 300;
     color: white;
 }
 
+.common.pull-right{
+    padding-right: 10%;
+}
+
+.common.pull-left{
+    padding-left: 10%;
+}
+
+.navbar-brand:hover{
+    text-decoration: none;
+}
 .navbar-default .navbar-brand {
     color: white;
 }

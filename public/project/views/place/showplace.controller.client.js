@@ -6,6 +6,7 @@
     function ShowPlaceController($location, $rootScope, $routeParams, PlaceService) {
         var vm = this;
         vm.fid = $routeParams.placeId;
+        vm.userId = $routeParams.userId;
         var mapurl = "https://maps.googleapis.com/maps/api/staticmap?center=LNL&zoom=15&size=500x300&sensor=false&markers=color:red%7Clabel:P%7CLNL"
         
         function init(){

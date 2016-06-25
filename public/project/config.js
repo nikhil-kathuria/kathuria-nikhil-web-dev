@@ -45,6 +45,10 @@
                 templateUrl: "views/place/showplace.view.client.html",
                 controller: "ShowPlaceController",
                 controllerAs: "model"
+            }).when("/user/:userId/similar", {
+                templateUrl: "views/place/commonplace.view.client.html",
+                controller: "SimilarUsersController",
+                controllerAs: "model"
             })
             .when("/user/:userId/bucket", {
                 templateUrl: "views/bucket/bucket.view.client.html",

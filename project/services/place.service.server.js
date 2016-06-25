@@ -7,9 +7,10 @@ module.exports = function(app, model){
     var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
     app.get("/api/user/:userId/places", findUserPlaces);
-    app.get("/api/user/similar/:userId", findSimilarUsers);
+    app.get("/api/user/:userId/similar", findSimilarUsers);
     app.post("/api/user/:userId/addplace", addUserPlace);
     app.get("/api/place/:Fid", findPlaceByFid);
+
 
 
     function findPlaceByFid(req, res){
@@ -65,26 +66,26 @@ module.exports = function(app, model){
             });
     }
 
-    function findSimilarUsers() {
-        var userId = req.param.userId;
+    function findSimilarUsers(req, res) {
+        var userId = req.params.userId;
 
         userModelProject
             .findUserById(userId)
             .then(function (user) {
                 var ids = user.places;
                 userModelProject
-                    .findAll()
-                    .then( function (all) {
-                        var rank = getRecomendation(ids, all);
+                    .getAllUsers()
+                    .then( function (users) {
+                        var rank = getRecommendation(ids, users);
                         res.json(rank);
                 })
             }, function (err) {
-                vm.error="No Similar users found";
+                res.send(404).send("Could not find similar users");
             });
     }
 
-    function getRecomendation(ids, users) {
-        var map = {};
+    function getRecommendation(ids, users) {
+        var array = [];
         for (usx in users){
             var places = users[usx]['places'];
             var counter = 0;
@@ -94,11 +95,18 @@ module.exports = function(app, model){
                     counter++;
                 }
             }
-            if (counter >=0 ){
-                map[users[usx]] = counter;
+            if (counter > 0 ){
+                var obj = {
+                    "_id" :users[usx]['_id'],
+                    "username" : users[usx]['username'],
+                    "pic" : users[usx]['pic'],
+                    "common" : counter,
+                };
+
+                array.push(obj);
             }
         }
-        return map;
+        return array;
     }
 
 };

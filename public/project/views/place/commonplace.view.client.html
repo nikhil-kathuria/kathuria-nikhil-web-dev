@@ -1,0 +1,64 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="#/user/" class="navbar-link">
+                  <span class="glyphicon glyphicon-chevron-left">
+                  </span>
+            </a>
+        </div>
+        <div class="navbar-header pull-left">
+            <a class="navbar-brand" href="">
+                Users Like Me
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading panel-heading-custom">
+            <div class="row">
+                <div class="col-xs-9 col-sm-9 col-md-9 text-center">
+                    <H4>User</H4>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3" text-center>
+                    <H4>Common Places</H4>
+                </div>
+            </div>
+        </div>
+        <div ng-repeat="user in model.data">
+
+            <div class="row">
+                <div class="col-xs-9 col-sm-9 col-md-9 ">
+                    <a class="pull-left" href="#/user/{{user._id}}">
+                        <img class="media-object img-thumbnail detail-review-img" ng-src="{{user.pic}}">
+                    </a>
+                    <h6>{{user.firstname}} {{user.lastname}}</h6>
+                    <h6 class="common pull-left">{{user.username}}</h6>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <h5 class="common pull-right">{{user.common}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href=""
+               class="brand-logo">PlaceConnect</a>
+        </div>
+        <p class="navbar-text pull-right">
+            <a href="#/user">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
+    </div>
+</nav>
