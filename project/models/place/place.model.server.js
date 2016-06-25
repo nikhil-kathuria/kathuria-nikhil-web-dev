@@ -11,16 +11,26 @@ module.exports = function() {
         findPlaceById: findPlaceById,
         updatePlace: updatePlace,
         findPlaceByIds: findPlaceByIds,
-        findPlaceByFid: findPlaceByFid
+        findPlaceByFid: findPlaceByFid,
+        addPlaceReview: addPlaceReview,
     };
 
     return api;
 
+
+    function addPlaceReview(id, review) {
+        return Place.update({ fid: id},
+            { $push :
+                {reviews: review}
+            }
+        );
+    }
+
     function findPlaceByIds(ids){
-        var obj = Place.find({fid:
+        return Place.find({fid:
             { $in: ids }
         });
-        return obj;
+
     }
 
     function findPlaceByFid(id){

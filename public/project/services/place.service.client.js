@@ -9,10 +9,20 @@
             findUserPlaces : findUserPlaces,
             addUserPlace:addUserPlace,
             findPlaceByFid: findPlaceByFid,
-            findSimilarUsers: findSimilarUsers
+            findSimilarUsers: findSimilarUsers,
+            addPlaceReview: addPlaceReview,
+            getPlaceReviews: getPlaceReviews
         };
         
         return api;
+
+        function getPlaceReviews(fid) {
+            return $http.get("/api/place" + fid + "review");
+        }
+
+        function addPlaceReview(fid, review){
+            return $http.post("/api/place/" + fid + "/addreview", review);
+        }
 
         function findPlaceByFid(fid) {
             return $http.get("/api/place/" + fid);

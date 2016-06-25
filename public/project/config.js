@@ -52,8 +52,12 @@
             .when("/user/:userId/place/:placeId", {
                 templateUrl: "views/place/showplace.view.client.html",
                 controller: "ShowPlaceController",
-                controllerAs: "model"
-            }).when("/user/:userId/similar", {
+                controllerAs: "model",
+                resolve: {
+                    getSessionUser: getSessionUser
+                }
+            })
+            .when("/user/:userId/similar", {
                 templateUrl: "views/place/commonplace.view.client.html",
                 controller: "SimilarUsersController",
                 controllerAs: "model"
@@ -67,7 +71,8 @@
                 templateUrl: "views/message/viewmessage.view.client.html",
                 controller: "ViewMessageController",
                 controllerAs: "model"
-            }).otherwise({
+            })
+            .otherwise({
                 redirectTo: "/landing"
         });
 

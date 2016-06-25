@@ -1,10 +1,20 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-text pull-left">
+        <div ng-show="model.sessionUser"  class="navbar-text pull-left">
             <a href="#/user/{{model.userId}}/place" class="navbar-link">
                   <span class="glyphicon glyphicon-chevron-left">
                   </span>
             </a>
+        </div>
+        <div ng-show="model.sessionUser == null"  class="navbar-text pull-left">
+            <a href="#/"
+               class="brand-logo">PlaceConnect</a>
+        </div>
+        <div ng-show="model.sessionUser == null"  class="navbar-text pull-right">
+            <a class="text-navbar" href="#/login">Login</a>
+        </div>
+        <div ng-show="model.sessionUser == null"  class="navbar-text pull-right">
+            <a class="text-navbar" href="#/register">Reigster</a>
         </div>
         <div class="navbar-header pull-left">
             <a class="navbar-brand" href="">
@@ -27,7 +37,7 @@
                     <img class="img-responsive details" ng-src="{{model.place.photo}}">
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6">
-                    <h4 class="text-center">Place on Map</h4>
+                    <h4 class="text-center">Locate on Map</h4>
                     <img class="img-responsive details" ng-src="{{model.place.map}}">
                 </div>
             </div>
@@ -53,8 +63,11 @@
 
 
 
+            <div ng-show="model.success" class="alert alert-success">
+                {{model.success}}
+            </div>
 
-        <h4>Reviews:</h4>
+            <h4>Reviews:</h4>
         <hr/>
         <div class="media" ng-repeat="review in model.place.reviews">
             <a class="pull-left" href="/user/{{review.user._id}}">
@@ -65,12 +78,10 @@
                     <span>{{review.title}}</span>
                 </h4>
                 <p>
-                    <ng-rating ng-model="review.rating"
-                               editable="false">
-                    </ng-rating>
+                    <ng-rating ng-model="review.rating" editable="false"></ng-rating>
                 </p>
                 <h6>{{review.comment}}</h6>
-                    <span class="pull-right" ng-if="model.currentUser._id === review.user._id">
+                    <span class="pull-right" ng-if="model.sessionUser._id === review.user._id">
                         <a href="" ng-click="model.deleteReview(review._id)" class="btn btn-danger">Delete</a>
                     </span>
 
@@ -81,37 +92,38 @@
 
     </div>
     <div class="panel-body">
-        <div class="well">
             <h4>Write a Review:</h4>
+            <p>
+                <ng-rating ng-model="model.review.rating" editable="model.sessionUser != null"></ng-rating>
+            </p>
 
             <form role="form">
                 <div class="form-group">
                     <input type="text"
                            ng-model="model.review.title"
                            placeholder="Review Title"
-                           class="form-control" ng-disabled="!model.currentUser">
+                           class="form-control" ng-disabled="!model.sessionUser">
                 </div>
                 <div class="form-group">
                     <textarea ng-model="model.review.comment"
                               placeholder="Review Comments"
                               rows="3"
-                              class="form-control" ng-disabled="!model.currentUser">
+                              class="form-control" ng-disabled="!model.sessionUser">
                     </textarea>
                 </div>
-                <a ng-click="model.submitReview(model.review)" class="btn btn-primary" ng-disabled="!model.currentUser">Submit</a>
+                <a ng-click="model.submitReview(model.review)" class="btn btn-primary" ng-disabled="!model.sessionUser">Submit</a>
             </form>
-        </div>
     </div>
 </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
-        <div class="navbar-text pull-left">
+        <div ng-show="model.sessionUser"  class="navbar-text pull-left">
             <a href=""
                class="brand-logo">PlaceConnect</a>
         </div>
-        <p class="navbar-text pull-right">
+        <p ng-show="model.sessionUser != null" class="navbar-text pull-right">
             <a href="#/user">
                 <span class="glyphicon glyphicon-user"></span>
             </a>

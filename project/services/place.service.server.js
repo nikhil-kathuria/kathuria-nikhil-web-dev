@@ -10,7 +10,21 @@ module.exports = function(app, model){
     app.get("/api/user/:userId/similar", findSimilarUsers);
     app.post("/api/user/:userId/addplace", addUserPlace);
     app.get("/api/place/:Fid", findPlaceByFid);
+    app.post("/api/place/:Fid/addreview", addPlaceReview);
+    app.get("/api/place/:Fid/review", getPlaceReviews);
 
+    
+    function getPlaceReviews(req, res) {
+        var fid = req.params.Fid;
+        placeModel
+            .findPlaceByFid(fid)
+            .then(function (place) {
+                var review = place.reviews;
+                res.json(reviews);
+            }, function (err) {
+                res.status(404).send("Not reviews available for this post")
+            });
+    }
 
 
     function findPlaceByFid(req, res){
@@ -22,6 +36,20 @@ module.exports = function(app, model){
             }, function (err) {
                 res.status(404).send("Place not found :(")
             });
+    }
+    
+    function addPlaceReview(req, res) {
+        var review =  req.body;
+        var fid = req.params.Fid;
+        placeModel
+            .addPlaceReview(fid, review)
+            .then(function (response) {
+            res.send(200);
+        }, function (err) {
+                res.status(400).send("Review not added");
+            });
+        
+        
     }
     
     function addUserPlace(req, res){

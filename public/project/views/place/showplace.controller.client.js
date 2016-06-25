@@ -5,9 +5,13 @@
 
     function ShowPlaceController($location, $rootScope, $routeParams, PlaceService) {
         var vm = this;
+        vm.submitReview = submitReview;
         vm.fid = $routeParams.placeId;
-        vm.userId = $routeParams.userId;
-        var mapurl = "https://maps.googleapis.com/maps/api/staticmap?center=LNL&zoom=15&size=500x300&sensor=false&markers=color:red%7Clabel:P%7CLNL"
+        vm.sessionUser = $rootScope.sessionUser;
+
+        vm.sessionUser ? vm.userId = vm.sessionUser._id : $location.url("/login");
+
+        var mapurl = "https://maps.googleapis.com/maps/api/staticmap?center=LNL&zoom=15&size=500x300&sensor=false&markers=color:red%7Clabel:P%7CLNL";
         
         function init(){
             PlaceService
@@ -28,10 +32,30 @@
             var url = mapurl.replace(/LNL/g, latlng);
             place['map'] = url;
 
-            console.log(place['map']);
 
             return place;
         }
+
+        function submitReview(review) {
+            review['user'] = {
+                _id : vm.sessionUser._id,
+                username : vm.sessionUser.username,
+                pic : vm.sessionUser.pic
+            };
+            console.log(review);
+            PlaceService
+                .addPlaceReview(vm.fid, review)
+                .then(function (response) {
+                    init();
+                    
+            }, function (err) {
+                    vm.error = "Something went wrong";
+                });
+
+
+        }
+
+
     }
     
     

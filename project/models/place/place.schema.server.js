@@ -11,7 +11,20 @@ module.exports = function() {
         country: String,
         lat: Number,
         lng: Number,
-        photo: {type : String}
+        photo: {type : String},
+        reviews :[
+            {
+            rating: Number,
+            title: String,
+            comment: String,
+            timestamp: {type: Date, default: Date.now},
+            user: {
+                _id : {type: mongoose.Schema.Types.ObjectId, ref: 'UserProject'},
+                username : String,
+                pic: String
+                }
+            }
+        ]
 
     }, {collection: "project.place"});
 

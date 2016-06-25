@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top" xmlns="http://www.w3.org/1999/html">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
             <a href="#/user/" class="navbar-link">
@@ -28,7 +28,7 @@
             <article class="white-panel">
                 <div class="row">
                     <div class="col-xs-12">
-                        <img class="img-responsive" alt="500x300" ng-src="{{place.photo}}">
+                        <a href="#/user/{{model.userId}}/place/{{place.fid}}"> <img class="img-responsive" alt="500x300" ng-src="{{place.photo}}"> </a>
                     </div>
                 </div>
                 <div class="row">
