@@ -31,6 +31,14 @@
                     loggedIn: checkLoggedIn
                 }
             })
+            .when("/user/:userId", {
+                templateUrl: "views/user/publicprofile.view.client.html",
+                controller: "PublicProfileController",
+                controllerAs: "model",
+                resolve: {
+                    getSessionUser: getSessionUser
+                }
+            })
             .when("/user/:userId/place", {
                 templateUrl: "views/place/place.view.client.html",
                 controller: "PlaceController",
@@ -82,6 +90,22 @@
                         $location.url("/login");
                     }
                 );
+            return deferred.promise;
+        }
+
+        function getSessionUser(UserService, $q, $rootScope) {
+            var deferred = $q.defer();
+
+            UserService
+                .loggedIn()
+                .then(function (response) {
+                    var currentUser = response.data;
+                    if (currentUser != '0') {
+                        $rootScope.sessionUser = currentUser;
+                    }
+                    deferred.resolve();
+                });
+
             return deferred.promise;
         }
     }
