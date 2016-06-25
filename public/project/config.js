@@ -63,7 +63,11 @@
                 controller: "BucketController",
                 controllerAs: "model"
             })
-            .otherwise({
+            .when("/user/:userId/message", {
+                templateUrl: "views/message/viewmessage.view.client.html",
+                controller: "ViewMessageController",
+                controllerAs: "model"
+            }).otherwise({
                 redirectTo: "/landing"
         });
 

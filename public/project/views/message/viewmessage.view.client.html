@@ -1,0 +1,64 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="#/user/" class="navbar-link">
+                  <span class="glyphicon glyphicon-chevron-left">
+                  </span>
+            </a>
+        </div>
+        <div class="navbar-header pull-left">
+            <a class="navbar-brand" href="">
+                My Messages
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+
+    <div ng-show="model.success" class="alert alert-success">
+        {{model.success}}
+    </div>
+
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+    <div class="panel panel-default">
+        <H5 class=text-center> Messages </H5>
+            <div class="panel-body">
+                <div ng-repeat="message in model.messages" class="col-xs-12 col-sm-6 col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body IInd-box">
+                            <div class="row">
+                                <b>From :</b> {{message.from}}
+                            </div>
+                            <div class="row">
+                                <b>Subject :</b> {{message.subject}}
+                            </div>
+                            <div class="row">
+                                <b>Content :</b> {{message.message}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    </div>
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href=""
+               class="brand-logo">PlaceConnect</a>
+        </div>
+        <p class="navbar-text pull-right">
+            <a href="#/user">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
+    </div>
+</nav>

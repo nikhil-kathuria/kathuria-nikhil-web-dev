@@ -4,8 +4,8 @@ module.exports = function(app, model){
 
 
     app.post("/app/message/post", insertMessage);
-    app.get("/app/message/:toId", deleteMessage);
-    app.delete("/app/message/:messageId", getMessages);
+    app.get("/app/message/:toId", getMessages);
+    app.delete("/app/message/:messageId", deleteMessage);
 
 
 
@@ -15,7 +15,7 @@ module.exports = function(app, model){
             .insertMessage(message)
             .then(function (response) {
                 res.send(200);
-            }, function () {
+            }, function (error) {
                 res.status(501).send("Message not sent")
             });
 
@@ -39,7 +39,7 @@ module.exports = function(app, model){
         messageModel
             .getMessages(toId)
             .then( function (messages) {
-                res.send(messages);
+                res.json(messages);
             }, function (err) {
                 res.status(404).send("No Message Found")
             })
