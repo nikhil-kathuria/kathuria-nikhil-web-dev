@@ -5,6 +5,7 @@ module.exports = function(app) {
 
     require("./services/user.service.server")(app, models);
     require("./services/place.service.server")(app, models);
+    require("./services/message.service.server")(app, models);
     
 
 };

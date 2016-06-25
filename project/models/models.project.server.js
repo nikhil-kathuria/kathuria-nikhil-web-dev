@@ -18,7 +18,8 @@ module.exports = function() {
     var model = {
         userModelProject: require("./user/user.model.server.js")(),
         placeModel : require("./place/place.model.server")(),
-        bucketModel : require("./bucket/bucket.model.server")()
+        bucketModel : require("./bucket/bucket.model.server")(),
+        messageModel : require("./message/message.model.server")()
     };
 
     return model;
