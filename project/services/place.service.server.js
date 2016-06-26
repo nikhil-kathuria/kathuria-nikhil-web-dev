@@ -71,7 +71,7 @@ module.exports = function(app, model){
         var fid = place['fid'];
 
         placeModel.findPlaceByFid(fid).then(function (response) {
-            if (response.length < 1) {
+            if (response === null) {
                 placeModel
                     .createPlace(place)
                     .then(function (response) {
