@@ -47,7 +47,7 @@
                 var myplace = {};
                 var place = results[idx]['venue'];
 
-                if (place['categories']){
+                if (place['categories'].length > 0){
                     myplace['category'] = place['categories'][0]['name'];
                 }
 
