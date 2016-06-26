@@ -21,7 +21,7 @@ module.exports = function(app, model){
         placeModel
             .deletePlaceReview(fid, rid)
             .then(function (rid) {
-                res.status(200);
+                res.send(200);
         }, function(err){
                 res.status(400).send("Error occurred");
             });

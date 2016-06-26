@@ -20,7 +20,7 @@ module.exports = function() {
     
     
     function deletePlaceReview(id, rid) {
-        return Place.remove({fid: id},
+        return Place.update({fid: id},
             { $pull :
                 {
                     reviews: { _id: rid}
