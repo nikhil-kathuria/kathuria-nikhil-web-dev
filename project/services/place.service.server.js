@@ -32,7 +32,7 @@ module.exports = function(app, model){
         placeModel
             .findPlaceByFid(fid)
             .then(function (place) {
-                var review = place.reviews;
+                var reviews = place.reviews;
                 res.json(reviews);
             }, function (err) {
                 res.status(404).send("No reviews available for this post")

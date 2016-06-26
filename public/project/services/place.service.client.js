@@ -22,7 +22,8 @@
         }
 
         function getPlaceReviews(fid) {
-            return $http.get("/api/place/" + fid + "review");
+            return $http.get("/api/place/" + fid + "/review");
+
         }
 
         function addPlaceReview(fid, review){

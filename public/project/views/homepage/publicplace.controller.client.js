@@ -20,9 +20,9 @@
                     
                     PlaceService
                         .getPlaceReviews(vm.fid)
-                        .then(function (response) {
-                            data = response.data;
-                            vm.place['reviews'] = data;
+                        .then(function (reviews) {
+                            var rdata = reviews.data;
+                            vm.place['reviews'] = rdata;
                     }, function (err) {
                             vm.error = "Not able to fetch reviews";
                         })
