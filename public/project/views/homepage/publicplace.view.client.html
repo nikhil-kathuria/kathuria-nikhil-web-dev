@@ -1,12 +1,12 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div ng-show="model.sessionUser"  class="navbar-text pull-left">
-            <a href="#/user/{{model.userId}}/place" class="navbar-link">
+        <div ng-show="model.sessionUser == null"  class="navbar-text pull-left">
+            <a href="#/" class="navbar-link">
                   <span class="glyphicon glyphicon-chevron-left">
                   </span>
             </a>
         </div>
-        <div ng-show="model.sessionUser == null"  class="navbar-text pull-left">
+        <div ng-show="model.sessionUser == nul"  class="navbar-text pull-left">
             <a href="#/"
                class="brand-logo">PlaceConnect</a>
         </div>
@@ -16,7 +16,7 @@
         <div ng-show="model.sessionUser == null"  class="navbar-text pull-right">
             <a class="text-navbar" href="#/register">Reigster</a>
         </div>
-        <div class="navbar-header pull-left">
+        <div ng-show="model.sessionUser" class="navbar-header pull-left">
             <a class="navbar-brand" href="">
                 Place Details
             </a>
