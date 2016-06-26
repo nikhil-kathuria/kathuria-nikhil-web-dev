@@ -7,6 +7,7 @@
         var vm = this;
         vm.fid = $routeParams.placeId;
         vm.sessionUser = $rootScope.sessionUser;
+        console.log(vm.sessionUser);
 
         var mapurl = "https://maps.googleapis.com/maps/api/staticmap?center=LNL&zoom=15&size=500x300&sensor=false&markers=color:red%7Clabel:P%7CLNL";
 
@@ -33,6 +34,7 @@
 
         // Call the init to initialize
         init();
+
 
         function extractDetails(data){
                 var myplace = {};
