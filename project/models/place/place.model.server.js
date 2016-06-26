@@ -45,7 +45,7 @@ module.exports = function() {
     }
 
     function findPlaceByFid(id){
-        return Place.findOne({fid: id });
+        return Place.find({fid: id });
     }
 
     function createPlace(place) {

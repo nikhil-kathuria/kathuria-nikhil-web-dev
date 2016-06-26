@@ -70,9 +70,21 @@ module.exports = function(app, model){
         var place = req.body;
         var fid = place['fid'];
 
-        placeModel
-            .createPlace(place)
-            .then(function (response) {
+        placeModel.findPlaceByFid(fid).then(function (response) {
+            if (response.length < 1) {
+                placeModel
+                    .createPlace(place)
+                    .then(function (response) {
+                        userModelProject
+                            .addPlace(userId, fid)
+                            .then(function (response) {
+                                res.send(200);
+                            }, function(err) {
+                                res.status(400).send("The place was not added");
+                            });
+
+            });
+        } else {
                 userModelProject
                     .addPlace(userId, fid)
                     .then(function (response) {
@@ -80,9 +92,10 @@ module.exports = function(app, model){
                     }, function(err) {
                         res.status(400).send("The place was not added");
                     });
-        }, function (err) {
-                res.status(400).send("The place was not added");
-            });
+            }
+        } , function (err) {
+            res.status(400).send("The place was not added");
+        });
     }
 
 
