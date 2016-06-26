@@ -23,7 +23,7 @@ module.exports = function() {
         return Place.remove({fid: id},
             { $pull :
                 {
-                    reviews: {_id: rid}
+                    reviews: { _id: rid}
                 }
         });
     }

@@ -1,3 +1,3 @@
 (function(){
-    angular.module("PlaceConnect", ["ngRoute"]);
+    angular.module("PlaceConnect", ["ngRoute","ngRating"]);
 })();

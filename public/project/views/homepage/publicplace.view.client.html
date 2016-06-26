@@ -70,16 +70,16 @@
             <h4>Reviews:</h4>
             <hr/>
             <div class="media" ng-repeat="review in model.place.reviews">
-                <a class="pull-left" href="/user/{{review.user._id}}">
+                <a class="pull-left" href="#/user/{{review.user._id}}">
                     <img class="media-object img-thumbnail detail-review-img" ng-src="{{review.user.pic}}">
                 </a>
                 <div class="media-body">
-                    <h4 class="media-heading">
-                        <span>{{review.title}}</span>
-                    </h4>
                     <p>
                         <ng-rating ng-model="review.rating" editable="false"></ng-rating>
                     </p>
+                    <h4 class="media-heading">
+                        <span>{{review.title}}</span>
+                    </h4>
                     <h6>{{review.comment}}</h6>
                     <span class="pull-right" ng-if="model.sessionUser._id === review.user._id">
                         <a href="" ng-click="model.deleteReview(review._id)" class="btn btn-danger">Delete</a>
