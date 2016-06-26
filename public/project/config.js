@@ -119,6 +119,8 @@
                     var currentUser = response.data;
                     if (currentUser != '0') {
                         $rootScope.sessionUser = currentUser;
+                    } else {
+                        $rootScope.sessionUser = null;
                     }
                     deferred.resolve();
                 });

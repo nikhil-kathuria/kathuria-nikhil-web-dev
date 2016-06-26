@@ -8,6 +8,7 @@
 
         vm.sendMessage = sendMessage;
         vm.sessionUser = $rootScope.sessionUser;
+        console.log(vm.sessionUser);
         vm.userId = $routeParams.userId;
 
         function init() {
