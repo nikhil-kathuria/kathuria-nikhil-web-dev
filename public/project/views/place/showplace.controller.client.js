@@ -6,7 +6,7 @@
     function ShowPlaceController($location, $rootScope, $routeParams, PlaceService) {
         var vm = this;
         vm.submitReview = submitReview;
-        vm.deleteReview = deleteReview
+        vm.deleteReview = deleteReview;
         vm.fid = $routeParams.placeId;
         vm.sessionUser = $rootScope.sessionUser;
 
@@ -43,7 +43,6 @@
                 username : vm.sessionUser.username,
                 pic : vm.sessionUser.pic
             };
-            console.log(review);
             PlaceService
                 .addPlaceReview(vm.fid, review)
                 .then(function (response) {

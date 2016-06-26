@@ -7,7 +7,8 @@
 
         var vm = this;
         vm.searchPlaces = searchPlaces;
-        var pos = "-33.86755700000001" + ","  + "151.201527";
+        // Allocate Boston Back Bay long and Lat in case geolocation is prohibitted
+        var pos = "42.345397399999996,-71.0843031";
         vm.user = $rootScope.currentUser;
 
         function init(){
@@ -50,7 +51,7 @@
                 var myplace = {};
                 var place = results[idx]['venue'];
 
-                if (place['categories']){
+                if (place['categories'].length > 0){
                     myplace['category'] = place['categories'][0]['name'];
                 }
 

@@ -72,6 +72,14 @@
                 controller: "ViewMessageController",
                 controllerAs: "model"
             })
+            .when("/place/:placeId", {
+                templateUrl: "views/homepage/publicplace.view.client.html",
+                controller: "PublicPlaceController",
+                controllerAs: "model",
+                resolve: {
+                    getSessionUser: getSessionUser
+                }
+            })
             .otherwise({
                 redirectTo: "/landing"
         });
