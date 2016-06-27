@@ -29,10 +29,13 @@
         {{model.error}}
     </div>
 
+
     <div class="panel panel-default">
         <div class="panel-body">
             <form>
                 <img src={{model.user.pic}} class="profile-pic center-block img-circle">
+                <span ng-show="!model.sessionUser.moderator" class="label label-pill label-info text-center">User</span>
+                <span ng-show="model.sessionUser.moderator" class="label label-pill label-success text-center">Moderator</span>
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input ng-model="model.user.username"
@@ -84,9 +87,9 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <a class="btn btn-primary btn-block"
-               href="#/user/{{model.user._id}}/place">Places</a>
-            <a class="btn btn-primary btn-block"
-               href="#/user/{{model.user._id}}/bucket">Buckets</a>
+               href="#/user/{{model.user._id}}/place">My Places</a>
+            <a ng-show="model.sessionUser.moderator" class="btn btn-primary btn-block"
+               href="#/user/{{model.user._id}}/allplace">All Places</a>
             <a class="btn btn-primary btn-block"
                href="#/user/{{model.user._id}}/similar">People like me</a>
             <a class="btn btn-primary btn-block"
@@ -97,8 +100,7 @@
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <a class="btn btn-danger btn-block"
-               href="#/login">Logout</a>
+            <a ng-click="model.logout()" class="btn btn-danger btn-block">Logout</a>
             <a ng-click="model.unregister()" class="btn btn-danger  btn-block">
                 Unregister</a>
         </div>

@@ -13,7 +13,18 @@ module.exports = function(app, model){
     app.post("/api/place/:Fid/addreview", addPlaceReview);
     app.get("/api/place/:Fid/review", getPlaceReviews);
     app.delete("/api/place/:Fid/review/:reviewId", deletePlaceReview);
+    app.get("/api/places", findAllPlaces);
 
+    
+    function findAllPlaces(req, res) {
+        placeModel
+            .findAllPlaces()
+            .then(function (places) {
+                res.json(places);
+            }, function (err) {
+                res.status(404).send("No Places Found");
+            });
+    }
     
     function deletePlaceReview(req, res) {
         var rid = req.params.reviewId;

@@ -45,7 +45,8 @@ module.exports = function() {
             .update({_id: userId },{
                 $set: {
                     firstName: user.firstName,
-                    lastName: user.lastName
+                    lastName: user.lastName,
+                    email: user.email
                 }
             });
     }
@@ -58,6 +59,7 @@ module.exports = function() {
                 }
             });
     }
+
     
     function findPlaceIds(userId){
         

@@ -82,7 +82,7 @@
                     <span>{{review.title}}</span>
                 </h4>
                 <h6>{{review.comment}}</h6>
-                    <span class="pull-right" ng-if="model.sessionUser._id === review.user._id">
+                    <span class="pull-right" ng-if="model.sessionUser._id === review.user._id || model.sessionUser.moderator">
                         <a href="" ng-click="model.deleteReview(review._id)" class="btn btn-danger">Delete</a>
                     </span>
 

@@ -1,0 +1,56 @@
+<nav class="navbar navbar-default navbar-fixed-top" xmlns="http://www.w3.org/1999/html">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="#/user" class="navbar-link">
+                  <span class="glyphicon glyphicon-chevron-left">
+                  </span>
+            </a>
+        </div>
+        <div class="navbar-header pull-left">
+            <a class="navbar-brand" href="">
+                All Places
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <div class="row">
+        <div ng-repeat="place in model.places" class="col-sm-6 col-md-4">
+            <article class="white-panel">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a href="#/user/{{model.userId}}/place/{{place.fid}}"> <img class="img-responsive" alt="500x300" ng-src="{{place.photo}}"> </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <hr>
+                    <div class="col-xs-12">
+                        <a href="#/user/{{model.userId}}/place/{{place.fid}}">{{place.name}}</a>
+                        <div>{{place.category}}</div>
+                        <div> {{place.address}}, {{place.city}}, {{place.state}}</div>
+                        <a href="#/user/{{model.userId}}/place/{{place.fid}}"> <span class="glyphicon glyphicon-globe add"></span> </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href=""
+               class="brand-logo">PlaceConnect</a>
+        </div>
+        <p class="navbar-text pull-right">
+            <a href="#/user">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
+    </div>
+</nav>

@@ -13,11 +13,15 @@ module.exports = function() {
         findPlaceByIds: findPlaceByIds,
         findPlaceByFid: findPlaceByFid,
         addPlaceReview: addPlaceReview,
-        deletePlaceReview:deletePlaceReview
+        deletePlaceReview:deletePlaceReview,
+        findAllPlaces:findAllPlaces
     };
 
     return api;
-    
+
+    function findAllPlaces() {
+        return Place.find();
+    }
     
     function deletePlaceReview(id, rid) {
         return Place.update({fid: id},

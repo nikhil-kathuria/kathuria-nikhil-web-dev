@@ -7,7 +7,10 @@
         var vm = this;
         vm.updateUser = updateUser;
         vm.unregister = unregister;
+        vm.logout = logout;
         vm.userId = $rootScope.currentUser._id;
+        vm.sessionUser = $rootScope.currentUser;
+
 
         
         function init() {

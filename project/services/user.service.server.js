@@ -46,7 +46,6 @@ module.exports = function(app, model){
     passport.use('google',new GoogleStrategy(googleConfig, googleStrategy));
 
     function uploadProfilePic(req, res) {
-        var width = req.body.width;
         var myFile = req.file;
         var redirecturl = "/project/#/user";
         var userId = req.body.userId;

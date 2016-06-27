@@ -72,6 +72,14 @@
                 controller: "ViewMessageController",
                 controllerAs: "model"
             })
+            .when("/user/:userId/allplace", {
+                templateUrl: "views/place/allplace.view.client.html",
+                controller: "AllPlaceController",
+                controllerAs: "model",
+                resolve: {
+                    getSessionUser: getSessionUser
+                }
+            })
             .when("/place/:placeId", {
                 templateUrl: "views/homepage/publicplace.view.client.html",
                 controller: "PublicPlaceController",
