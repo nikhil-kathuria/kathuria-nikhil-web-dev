@@ -6,6 +6,7 @@
     function ViewMessageController($routeParams, $location, MessageService){
         var vm = this;
         vm.userId = $routeParams.userId;
+        vm.deleteMessage = deleteMessage;
 
         function init(){
             MessageService.
@@ -14,12 +15,23 @@
                     vm.messages = response.data;
                     console.log(vm.messages);
                 }, function (err){
-                    vm.error = "Sorry no messages found";
+                    vm.info = "Sorry No messages found";
                 });
 
         }
 
         init();
+
+        function deleteMessage(messageId) {
+            MessageService
+                .deleteMessage(messageId)
+                .then(function (response) {
+                    init();
+                }, function (err) {
+                   vm.error = "Could not delete"
+                });
+
+        }
     }
 
 })();

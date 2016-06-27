@@ -18,8 +18,8 @@
             return $http.post("/app/message/post", message);
         }
 
-        function deleteMessage(toId) {
-            return $http.delete("/app/message/" + toId);
+        function deleteMessage(messageId) {
+            return $http.delete("/app/message/" + messageId);
         }
 
         function getMessages(messageId) {
