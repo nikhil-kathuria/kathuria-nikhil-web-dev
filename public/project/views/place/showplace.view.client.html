@@ -71,6 +71,7 @@
             <h4>Reviews:</h4>
         <hr/>
         <div class="media" ng-repeat="review in model.place.reviews">
+            <p class="review-name">{{review.user.username}}</p>
             <a class="pull-left" href="#/user/{{review.user._id}}">
                 <img class="media-object img-thumbnail detail-review-img" ng-src="{{review.user.pic}}">
             </a>
@@ -92,6 +93,11 @@
 
 
     </div>
+
+        <div ng-show="model.warning" class="alert alert-warning">
+            {{model.warning}}
+        </div>
+
     <div class="panel-body">
             <h4>Write a Review:</h4>
             <p>

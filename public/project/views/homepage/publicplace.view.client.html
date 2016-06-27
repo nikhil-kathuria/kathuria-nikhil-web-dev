@@ -71,9 +71,11 @@
             <!--{{model.place.reviews}}-->
             <hr/>
             <div class="media" ng-repeat="review in model.place.reviews">
+                <p class="review-name">{{review.user.username}}</p>
                 <a class="pull-left" href="#/user/{{review.user._id}}">
                     <img class="media-object img-thumbnail detail-review-img" ng-src="{{review.user.pic}}">
                 </a>
+
                 <div class="media-body">
                     <p>
                         <ng-rating ng-model="review.rating" editable="false"></ng-rating>

@@ -20,6 +20,7 @@ module.exports = function(app, model){
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
     app.post("/api/profilepicupload", upload.single('myFile'), uploadProfilePic);
+    app.delete("/api/user/:userId/place/:Fid", deleteUserPlace);
 
 
 
@@ -183,6 +184,19 @@ module.exports = function(app, model){
                 }
             }
         );
+    }
+
+
+    function deleteUserPlace(req, res) {
+        var userId = req.params.userId;
+        var fid = req.params.Fid;
+        userModelProject
+            .deleteUserPlace(fid, userId)
+            .then(function (response) {
+                res.send(200);
+            }, function (err) {
+                res.status(501).send("Failed to delete the place for user");
+            });
     }
 
 

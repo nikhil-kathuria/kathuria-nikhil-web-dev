@@ -14,8 +14,10 @@ module.exports = function(app, model){
     app.get("/api/place/:Fid/review", getPlaceReviews);
     app.delete("/api/place/:Fid/review/:reviewId", deletePlaceReview);
     app.get("/api/places", findAllPlaces);
+ 
 
-    
+
+
     function findAllPlaces(req, res) {
         placeModel
             .findAllPlaces()

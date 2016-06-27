@@ -14,7 +14,7 @@ module.exports = function() {
         findPlaceByFid: findPlaceByFid,
         addPlaceReview: addPlaceReview,
         deletePlaceReview:deletePlaceReview,
-        findAllPlaces:findAllPlaces
+        findAllPlaces: findAllPlaces,
     };
 
     return api;
@@ -22,6 +22,7 @@ module.exports = function() {
     function findAllPlaces() {
         return Place.find();
     }
+    
     
     function deletePlaceReview(id, rid) {
         return Place.update({fid: id},

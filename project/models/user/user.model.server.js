@@ -18,12 +18,25 @@ module.exports = function() {
         findPlaceIds: findPlaceIds,
         addPlace: addPlace,
         removePlace: removePlace,
-        getAllUsers: getAllUsers
+        getAllUsers: getAllUsers,
+        deleteUserPlace: deleteUserPlace
     };
+
     return api;
 
     function getAllUsers() {
         return UserProject.find();
+    }
+
+    function deleteUserPlace(fid, userId) {
+        return UserProject.update({ _id: userId},
+            { $pull :
+                {
+                    places: fid
+                }
+
+            });
+
     }
 
     function addPlace(userId, fid){

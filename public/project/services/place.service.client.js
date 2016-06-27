@@ -13,11 +13,16 @@
             addPlaceReview: addPlaceReview,
             getPlaceReviews: getPlaceReviews,
             deleteReview : deleteReview,
-            findAllPlaces: findAllPlaces
+            findAllPlaces: findAllPlaces,
+            deleteUserPlace: deleteUserPlace
         };
         
         return api;
 
+        function deleteUserPlace(fid, userId) {
+            return $http.delete("/api/user/" + userId + "/place/" + fid);
+            
+        }
         function findAllPlaces(){
             return $http.get("/api/places");
         }

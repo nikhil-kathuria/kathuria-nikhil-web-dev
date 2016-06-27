@@ -6,6 +6,7 @@
     function PlaceController($location, $rootScope, PlaceService, $routeParams){
         var vm = this;
         vm.places = null;
+        vm.deleteUserPlace = deleteUserPlace;
         //vm.userId = $rootScope.currentUser._id;
         vm.userId = $routeParams.userId;
         
@@ -20,6 +21,17 @@
             
         }
         init();
+        
+        function deleteUserPlace(fid) {
+            PlaceService
+                .deleteUserPlace(fid, vm.userId)
+                .then(function (response) {
+                init();
+            }, function (err) {
+                    vm.error = "Failed to delete the place"
+                });
+            
+        }
     }
 
 })();

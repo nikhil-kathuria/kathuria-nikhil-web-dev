@@ -38,6 +38,8 @@
         }
 
         function submitReview(review) {
+            console.log(review);
+            if (review){
             review['user'] = {
                 _id : vm.sessionUser._id,
                 username : vm.sessionUser.username,
@@ -52,7 +54,9 @@
                     vm.error = "Something went wrong";
                 });
 
-
+            } else {
+                vm.warning = "Review submission requires atleast one input"
+            }
         }
 
 

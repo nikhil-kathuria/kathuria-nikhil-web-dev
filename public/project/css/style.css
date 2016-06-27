@@ -50,9 +50,14 @@ span.glyphicon.glyphicon-plus.add {
     color: #3E7AAB
 }
 
-span.glyphicon.glyphicon-globe.add {
+span.glyphicon.glyphicon-globe {
     color: #3E7AAB
 }
+
+span.glyphicon.glyphicon-remove {
+    color: darkred;
+}
+
 
 div .input-group .search .inline {
     display: inline-block;
@@ -99,7 +104,9 @@ input.form-control {
     margin-bottom: 5px;
 }
 
-
+.review-name{
+    font-size: medium;
+}
 
 h1,
 h2,
