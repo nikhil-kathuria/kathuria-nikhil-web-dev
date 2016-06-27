@@ -10,6 +10,7 @@
         vm.sessionUser ? vm.userId = $routeParams.userId : $location.url("/login");
         vm.sessionUser._id !== vm.userId ? $location.url("/user") : vm.places = null;
         vm.userId = $routeParams.userId;
+        vm.deleteUserPlace = deleteUserPlace;
         
         function init() {
             PlaceService.
