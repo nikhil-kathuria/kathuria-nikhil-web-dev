@@ -5,9 +5,12 @@
 
     function AllPlaceController($location, $rootScope, PlaceService, $routeParams){
         var vm = this;
-        vm.sessionUser = $rootScope.currentUser;
-        vm.sessionUser ? vm.userId = vm.sessionUser._id : $location.url("/login");
+        vm.sessionUser = $rootScope.sessionUser;
+        vm.sessionUser ? vm.userId = $routeParams.userId : $location.url("/login");
         vm.sessionUser.moderator ? vm.places = null : $location.url("/user");
+        vm.sessionUser._id !== vm.userId ? $location.url("/user") : vm.places = null;
+        vm.deletePlace = deletePlace;
+
 
         function init() {
             PlaceService.
@@ -21,6 +24,16 @@
         }
 
         init();
+
+        function deletePlace(fid) {
+            PlaceService
+                .deletePlace(fid)
+                .then(function (response) {
+                init();
+            }, function (err) {
+                    vm.error = "Error Occured";
+                });
+        }
     }
 
 })();

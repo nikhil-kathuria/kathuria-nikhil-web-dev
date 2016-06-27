@@ -15,9 +15,15 @@
             findUserById: findUserById,
             updateUser: updateUser,
             deleteUser: deleteUser,
-            findUserByUsername : findUserByUsername
+            findUserByUsername : findUserByUsername,
+            deleteUserPlace: deleteUserPlace
         };
         return api;
+
+        function deleteUserPlace(fid, userId) {
+            return $http.delete("/api/user/" + userId + "/place/" + fid);
+
+        }
 
         function logout(){
             return $http.post("/api/logout");

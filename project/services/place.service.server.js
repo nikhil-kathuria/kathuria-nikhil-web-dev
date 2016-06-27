@@ -14,8 +14,19 @@ module.exports = function(app, model){
     app.get("/api/place/:Fid/review", getPlaceReviews);
     app.delete("/api/place/:Fid/review/:reviewId", deletePlaceReview);
     app.get("/api/places", findAllPlaces);
+    app.delete("/api/place/:Fid", deletePlace);
  
 
+    function deletePlace(req, res) {
+        var fid = req.params.Fid;
+        placeModel
+            .deletePlace(fid)
+            .then(function (response) {
+                res.send(200);
+            }, function (err) {
+                res.status(500).send("Error Occoured");
+            });
+    }
 
 
     function findAllPlaces(req, res) {

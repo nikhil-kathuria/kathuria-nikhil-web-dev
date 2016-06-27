@@ -42,7 +42,10 @@
             .when("/user/:userId/place", {
                 templateUrl: "views/place/place.view.client.html",
                 controller: "PlaceController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    getSessionUser: getSessionUser
+                }
             })
             .when("/user/:userId/place/add", {
                 templateUrl: "views/place/addplace.view.client.html",

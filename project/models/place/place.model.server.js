@@ -68,8 +68,8 @@ module.exports = function() {
             });
     }
 
-    function deletePlace(placeId) {
-        return Place.remove({_id: placeId});
+    function deletePlace(id) {
+        return Place.remove({fid: id});
 
     }
 

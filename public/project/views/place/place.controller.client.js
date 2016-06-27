@@ -3,11 +3,12 @@
         .module("PlaceConnect")
         .controller("PlaceController", PlaceController);
     
-    function PlaceController($location, $rootScope, PlaceService, $routeParams){
+    function PlaceController($location, $rootScope, PlaceService, UserService, $routeParams){
         var vm = this;
         vm.places = null;
-        vm.deleteUserPlace = deleteUserPlace;
-        //vm.userId = $rootScope.currentUser._id;
+        vm.sessionUser = $rootScope.sessionUser;
+        vm.sessionUser ? vm.userId = $routeParams.userId : $location.url("/login");
+        vm.sessionUser._id !== vm.userId ? $location.url("/user") : vm.places = null;
         vm.userId = $routeParams.userId;
         
         function init() {
@@ -23,7 +24,7 @@
         init();
         
         function deleteUserPlace(fid) {
-            PlaceService
+            UserService
                 .deleteUserPlace(fid, vm.userId)
                 .then(function (response) {
                 init();
