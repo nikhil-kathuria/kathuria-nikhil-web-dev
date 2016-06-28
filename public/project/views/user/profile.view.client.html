@@ -34,8 +34,10 @@
         <div class="panel-body">
             <form>
                 <img src={{model.user.pic}} class="profile-pic center-block img-circle">
-                <span ng-show="!model.sessionUser.moderator" class="label label-pill label-info text-center">User</span>
-                <span ng-show="model.sessionUser.moderator" class="label label-pill label-success text-center">Moderator</span>
+                <H4><span ng-show="!model.sessionUser.moderator" class="label label-pill label-info text-center">
+                    <i class="fa fa-user" aria-hidden="true"></i> User</span></H4>
+                <H4><span ng-show="model.sessionUser.moderator" class="label label-pill label-success text-center">
+                    <i class="fa fa-user-secret" aria-hidden="true"></i> Moderator</span></H4>
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input ng-model="model.user.username"
@@ -78,7 +80,8 @@
             <form action="/api/profilepicupload"  method="post" enctype="multipart/form-data" class="form-group">
                 <input  name="myFile"   type="file" class="form-control"/>
                 <input  name="userId" value="{{model.user._id}}"   style="display: none"/>
-                <button type="submit"   class="btn btn-block btn-primary">Upload Profile Pic</button>
+                <button type="submit"   class="btn btn-block btn-primary">
+                    <i class="fa fa-picture-o" aria-hidden="true"></i> Upload Profile Pic</button>
             </form>
 
         </div>
@@ -87,22 +90,27 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <a class="btn btn-primary btn-block"
-               href="#/user/{{model.user._id}}/place">My Places</a>
+               href="#/user/{{model.user._id}}/place">
+                <i class="fa fa-globe" aria-hidden="true"></i> My Places</a>
             <a ng-show="model.sessionUser.moderator" class="btn btn-primary btn-block"
-               href="#/user/{{model.user._id}}/allplace">All Places</a>
+               href="#/user/{{model.user._id}}/allplace">
+                <i class="fa fa-globe" aria-hidden="true"></i> All Places</a>
             <a class="btn btn-primary btn-block"
-               href="#/user/{{model.user._id}}/similar">People like me</a>
+               href="#/user/{{model.user._id}}/similar">
+                <i class="fa fa-users" aria-hidden="true"></i> People like me</a>
             <a class="btn btn-primary btn-block"
-               href="#/user/{{model.user._id}}/message">My Messages</a>
+               href="#/user/{{model.user._id}}/message">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i> My Messages</a>
         </div>
     </div>
 
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <a ng-click="model.logout()" class="btn btn-danger btn-block">Logout</a>
+            <a ng-click="model.logout()" class="btn btn-danger btn-block">
+                <i class="fa fa-power-off" aria-hidden="true"></i> Logout</a>
             <a ng-click="model.unregister()" class="btn btn-danger  btn-block">
-                Unregister</a>
+                <i class="fa fa-user-times" aria-hidden="true"></i> Unregister</a>
         </div>
     </div>
 

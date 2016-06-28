@@ -42,7 +42,10 @@ module.exports = function() {
     function addPlace(userId, fid){
         return UserProject.update({_id: userId},
             { $addToSet:
-                {places: fid}}
+                { 
+                    places: fid
+                }
+            }
         );
     }
 
@@ -64,12 +67,10 @@ module.exports = function() {
             });
     }
     
-    function updateProfilePic(userId, picurl){
+    function updateProfilePic(userId, url){
         return UserProject
-            .update({_id: userId },{
-                $set: {
-                    pic: picurl
-                }
+            .update({ _id: userId },{
+                $set: {"pic": url}
             });
     }
 

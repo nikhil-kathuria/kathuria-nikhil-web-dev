@@ -54,8 +54,10 @@ module.exports = function(app, model){
 
         if(myFile) {
             var filename = myFile.filename;
-            var url = "/uploads/" + filename.toString();
-            userModelProject.updateProfilePic(userId, url);
+            // var pic = { "pic" : "/uploads/" + filename.toString() };
+            var pic = "/uploads/" + filename.toString();
+
+            userModelProject.updateProfilePic(userId, pic);
         }
         res.redirect(redirecturl);
     }
