@@ -28,33 +28,35 @@
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <form>
-                <img src={{model.user.pic}} class="profile-pic center-block img-circle">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input ng-model="model.user.username"
-                           ng-disabled="true"
-                           type="text"
-                           class="form-control"
-                           id="username"/>
-                </div>
-                <div class="form-group">
-                    <label for="first">First Name</label>
-                    <input ng-model="model.user.firstName"
-                           ng-disabled="true"
-                           type="text"
-                           class="form-control"
-                           id="first"/>
-                </div>
-                <div class="form-group">
-                    <label for="last">Last Name</label>
-                    <input ng-model="model.user.lastName"
-                           ng-disabled="true"
-                           type="text"
-                           class="form-control"
-                           id="last"/>
-                </div>
-            </form>
+            <ul class="list-group">
+                <li class="list-group-item text-muted" contenteditable="false">
+                    Profile Information
+                    <i class="fa fa-user fa-1x pull-right"></i>
+                </li>
+                <li class="list-group-item">
+                    <img src={{model.user.pic}} class="profile-pic center-block img-circle">
+                </li>
+                <li class="list-group-item">
+                            <span class="pull-left">
+                                <strong class="">Username</strong>
+                            </span> : {{model.user.username}}
+                </li>
+                <li class="list-group-item" ng-show="model.sessionUser">
+                            <span class="pull-left">
+                                <strong class="">First Name</strong>
+                            </span> : {{model.user.firstName}}
+                </li>
+                <li class="list-group-item" ng-show="model.sessionUser">
+                            <span class="pull-left">
+                                <strong class="">Last Name</strong>
+                            </span> : {{model.user.lastName}}
+                </li>
+                <li class="list-group-item">
+                            <span class="pull-left">
+                                <strong class="">Member Since</strong>
+                            </span> : <span ng-bind="model.user.dateCreated | date:'EEE, MMM-dd yyyy'"></span>
+                </li>
+            </ul>
         </div>
 
 

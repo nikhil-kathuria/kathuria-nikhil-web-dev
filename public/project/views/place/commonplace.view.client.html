@@ -32,16 +32,18 @@
             </div>
         </div>
         <div ng-repeat="user in model.data">
-
+            {{user}}
             <div class="row">
+
                 <div class="col-xs-9 col-sm-9 col-md-9 ">
                     <a class="pull-left" href="#/user/{{user._id}}">
-                        <img class="media-object img-thumbnail detail-review-img" ng-src="{{user.pic}}">
+                        <img class="media-object img-thumbnail detail-review-img" src="{{user.pic}}">
                     </a>
                     <h6 >{{user.firstname}} {{user.lastname}}</h6>
                     <h6 ng-show="user._id !== model.userId" class="common pull-left">{{user.username}}</h6>
                     <h6 ng-show="user._id === model.userId" class="common pull-left" class="alert-info">ME</h6>
                 </div>
+
                 <div class="col-xs-3 col-sm-3 col-md-3">
                     <h5 class="text-center">{{user.common}}</h5>
                 </div>

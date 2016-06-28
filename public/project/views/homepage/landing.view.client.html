@@ -15,9 +15,8 @@
 </nav>
 
 
-
-<div class="container">
-    <div class="input-group search">
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="3000">
+    <div class="input-group search landing">
         <input ng-model="searchText"
                type="text" class="form-control"
                placeholder="Search places around YOU!">
@@ -27,12 +26,53 @@
         </a>
     </span>
     </div>
+
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img class="lan-carousel img-responsive" src="/img/np.jpg" alt="...">
+            <div class="carousel-caption">
+                <h3>Search For Places You Care About!!</h3>
+            </div>
+        </div>
+        <div class="item">
+            <img class="lan-carousel img-responsive" src="/img/bar.jpg" alt="...">
+            <div class="carousel-caption">
+                <h3>Connect with like Minded People</h3>
+            </div>
+        </div>
+        <div class="item">
+            <img class="lan-carousel img-responsive" src="/img/brok.jpg" alt="...">
+            <div class="carousel-caption">
+                <h3>Have Your favourite Places BookMarked</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div> <!-- Carousel -->
+
+
+<div class="container">
     <div class="row">
         <div ng-repeat="place in model.places" class="col-sm-6 col-md-4">
             <article class="white-panel">
                 <div class="row">
                     <div class="col-xs-12">
-                        <a href="#/place/{{place.fid}}"> <img class="img-responsive" alt="500x300" ng-src="{{place.photo}}"> </a>
+                        <a href="#/place/{{place.fid}}"> <img class="img-responsive pin" alt="500x300" ng-src="{{place.photo}}"> </a>
                     </div>
                 </div>
                 <div class="row">
@@ -48,6 +88,7 @@
         </div>
     </div>
 </div>
+
 
 
 

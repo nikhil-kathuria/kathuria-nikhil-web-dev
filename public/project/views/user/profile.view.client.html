@@ -72,6 +72,14 @@
                 </div>
             </form>
 
+
+            <li class="list-group-item">
+                <span class="pull-left">
+                    <strong class="">Member Since </strong>
+                </span> : <span ng-bind="model.user.dateCreated | date:'EEE, MMM-dd yyyy'"></span>
+            </li>
+
+
         </div>
     </div>
 
@@ -124,7 +132,7 @@
                class="brand-logo">PlaceConnect</a>
         </div>
         <p class="navbar-text pull-right">
-            <a href="#/user/{{model.userId}}">
+            <a href="#/user">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </p>

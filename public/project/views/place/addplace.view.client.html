@@ -20,19 +20,25 @@
     </div>
 
     <div class="input-group search inline">
+        <div class="row text-justify">
+        <div class="col-sm-5 col-md-5">
         <input ng-model="searchInterest"
                type="text" class="form-control"
                placeholder="Your Interest">
+        </div>
+            <div class="col-sm-5 col-md-5">
         <input ng-model="searchPlace"
                type="text" class="form-control"
                placeholder="Place Name like Boston MA">
+                </div>
+            <div class="col-sm-2 col-md-2">
         <span class="input-group-btn">
         <div> <a ng-click="model.serchByProximity(searchPlace, searchInterest)" class="btn btn-default" type="button">
             <span class="glyphicon glyphicon-search"></span>
         </a>
         </div>
-
     </span>
+                </div>
     </div>
 
     <div class="row">
@@ -40,7 +46,7 @@
             <article class="white-panel">
                 <div class="row">
                     <div class="col-xs-12">
-                        <img class="img-responsive" alt="500x300" ng-src="{{place.photo}}">
+                        <img class="img-responsive pin" alt="500x300" ng-src="{{place.photo}}">
                     </div>
                 </div>
                 <div class="row">
